@@ -8,40 +8,38 @@ import java.util.List;
 import java.util.function.Consumer;
 
 public class Window {
-    private Size size;
+    private Rectangle<Size.PixelSize, Size.PixelSize> rectangle;
     private final Frame frame;
     private final List<Consumer<Window>> windowDisposedConsumers;
     private WindowState state;
 
-    public Window(Size size) {
-        this.size = size;
+    public Window(Rectangle<Size.PixelSize, Size.PixelSize> rectangle) {
+        this.rectangle = rectangle;
         this.frame = new Frame();
         this.windowDisposedConsumers = new ArrayList<>();
         this.state = WindowState.INACTIVE;
     }
 
-    public Window(int width, int height) {
-        this(new Size(width, height));
+    public Window(Size.PixelSize width, Size.PixelSize height) {
+        this(new Rectangle<>(width, height));
     }
 
-    public Window setSize(Size size) {
-        this.size = size;
-        this.frame.setSize(size.toAWTDimension());
+    public Window setRectangle(Rectangle<Size.PixelSize, Size.PixelSize> rectangle) {
+        this.rectangle = rectangle;
+        this.frame.setSize(rectangle.getWidth().getPixels(), rectangle.getHeight().getPixels());
         return this;
     }
 
-    public Window setSize(int width, int height) {
-        this.size = new Size(width, height);
-        this.frame.setSize(width, height);
-        return this;
+    public Window setRectangle(Size.PixelSize width, Size.PixelSize height) {
+        return setRectangle(new Rectangle<>(width, height));
     }
 
-    public Window setWidth(int width) {
-        return this.setSize(new Size(width, this.size.getHeight()));
+    public Window setWidth(Size.PixelSize width) {
+        return this.setRectangle(this.rectangle.withWidth(width));
     }
 
-    public Window setHeight(int height) {
-        return this.setSize(new Size(this.size.getWidth(), height));
+    public Window setHeight(Size.PixelSize height) {
+        return this.setRectangle(this.rectangle.withHeight(height));
     }
 
     public Window addWindowDeactivatedConsumer(Consumer<Window> windowDisposedConsumer) {
@@ -55,11 +53,11 @@ public class Window {
     }
 
     protected void activate() {
-        if(state == WindowState.ACTIVATING || state == WindowState.ACTIVE) {
+        if(this.state == WindowState.ACTIVATING || this.state == WindowState.ACTIVE) {
             return;
         }
         this.state = WindowState.ACTIVATING;
-        this.frame.setSize(size.toAWTDimension());
+        this.frame.setSize(rectangle.getWidth().getPixels(), rectangle.getHeight().getPixels());
         this.frame.setVisible(true);
         this.frame.addWindowListener(new WindowAdapter() {
             @Override
@@ -71,7 +69,7 @@ public class Window {
     }
 
     protected void deactivate() {
-        if(state == WindowState.DEACTIVATING || state == WindowState.INACTIVE) {
+        if(this.state == WindowState.DEACTIVATING || this.state == WindowState.INACTIVE) {
             return;
         }
         this.state = WindowState.DEACTIVATING;

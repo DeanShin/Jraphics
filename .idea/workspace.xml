@@ -5,13 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="570ff112-6e44-4de5-8fdb-ca139643f457" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/src/main/java/org/deanshin/jraphics/Application.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/src/main/java/org/deanshin/jraphics/Size.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/src/main/java/org/deanshin/jraphics/Window.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/src/main/java/org/deanshin/jraphics/Position.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/src/main/java/org/deanshin/jraphics/Rectangle.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/src/main/java/org/deanshin/jraphics/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/main/java/org/deanshin/jraphics/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/main/java/org/deanshin/jraphics/Size.java" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/main/java/org/deanshin/jraphics/Size.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/main/java/org/deanshin/jraphics/Window.java" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/main/java/org/deanshin/jraphics/Window.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -109,7 +108,7 @@
       <updated>1694396471435</updated>
       <workItem from="1694396472435" duration="2139000" />
       <workItem from="1694466633603" duration="5393000" />
-      <workItem from="1694820737827" duration="3858000" />
+      <workItem from="1694820737827" duration="11462000" />
     </task>
     <servers />
   </component>
