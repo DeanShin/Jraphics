@@ -61,6 +61,8 @@ public interface Size {
         return new MaxSize(Arrays.stream(candidates).toList());
     }
 
+    static PixelSize ZERO = new PixelSize(0);
+
     class PixelSize implements Size {
         private final int pixels;
 
