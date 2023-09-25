@@ -1,15 +1,12 @@
 package org.deanshin.jraphics;
 
-/**
- * A class that represents the CSS box model.
- */
 public class Offset {
     private final Size left;
     private final Size top;
     private final Size right;
     private final Size bottom;
 
-    public Builder builder() {
+    public static Builder builder() {
         return new Builder();
     }
 

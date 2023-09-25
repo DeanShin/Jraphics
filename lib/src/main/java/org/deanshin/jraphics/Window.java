@@ -21,7 +21,7 @@ public class Window {
     }
 
     public Window(Size.PixelSize width, Size.PixelSize height) {
-        this(new Dimensions<>(width, height));
+        this(Dimensions.builder().width(width).height(height).build());
     }
 
     public Window setDimensions(Dimensions<Size.PixelSize, Size.PixelSize> dimensions) {

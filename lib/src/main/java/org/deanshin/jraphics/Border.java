@@ -16,7 +16,7 @@ public class Border {
         this.bottom = bottom;
     }
 
-    public Builder builder() {
+    public static Builder builder() {
         return new Builder();
     }
 
@@ -57,22 +57,22 @@ public class Border {
         }
 
         public Builder left(Function<BorderSide.Builder, BorderSide.Builder> buildOperation) {
-            buildOperation.apply(this.left);
+            this.left = buildOperation.apply(this.left);
             return this;
         }
 
         public Builder top(Function<BorderSide.Builder, BorderSide.Builder> buildOperation) {
-            buildOperation.apply(this.top);
+            this.top = buildOperation.apply(this.top);
             return this;
         }
 
         public Builder right(Function<BorderSide.Builder, BorderSide.Builder> buildOperation) {
-            buildOperation.apply(this.right);
+            this.right = buildOperation.apply(this.right);
             return this;
         }
 
         public Builder bottom(Function<BorderSide.Builder, BorderSide.Builder> buildOperation) {
-            buildOperation.apply(this.bottom);
+            this.bottom = buildOperation.apply(this.bottom);
             return this;
         }
 

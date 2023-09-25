@@ -40,7 +40,7 @@ public interface Size {
     static AutoSize auto() {
         return new AutoSize();
     }
-
+    
     static <MIN extends Size, MAX extends Size> RangeSize<MIN, MAX> range(MIN minUnit, MAX maxUnit) {
         return new RangeSize<>(minUnit, maxUnit);
     }
