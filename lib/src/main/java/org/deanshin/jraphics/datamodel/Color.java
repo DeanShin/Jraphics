@@ -1,4 +1,4 @@
-package org.deanshin.jraphics;
+package org.deanshin.jraphics.datamodel;
 
 public class Color {
     public static Color BLACK = new Color(0, 0, 0);

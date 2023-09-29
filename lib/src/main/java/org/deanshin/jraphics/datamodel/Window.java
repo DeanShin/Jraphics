@@ -1,4 +1,7 @@
-package org.deanshin.jraphics;
+package org.deanshin.jraphics.datamodel;
+
+import org.deanshin.jraphics.internal.IWindowRenderer;
+import org.deanshin.jraphics.internal.WindowRenderer;
 
 import java.awt.Frame;
 import java.awt.event.WindowAdapter;
@@ -13,11 +16,16 @@ public class Window {
     private final List<Consumer<Window>> windowDisposedConsumers;
     private WindowState state;
 
+    private final IWindowRenderer windowRenderer;
+    private List<Box> children;
+
     public Window(Dimensions<Size.PixelSize, Size.PixelSize> dimensions) {
         this.dimensions = dimensions;
         this.frame = new Frame();
         this.windowDisposedConsumers = new ArrayList<>();
         this.state = WindowState.INACTIVE;
+        this.children = new ArrayList<>();
+        this.windowRenderer = new WindowRenderer();
     }
 
     public Window(Size.PixelSize width, Size.PixelSize height) {
@@ -52,6 +60,11 @@ public class Window {
         return this;
     }
 
+    public Window children(List<Box> children) {
+        this.children = children;
+        return this;
+    }
+
     protected void activate() {
         if(this.state == WindowState.ACTIVATING || this.state == WindowState.ACTIVE) {
             return;
@@ -76,6 +89,10 @@ public class Window {
         this.frame.dispose();
         windowDisposedConsumers.forEach(windowDisposedConsumer -> windowDisposedConsumer.accept(this));
         this.state = WindowState.INACTIVE;
+    }
+
+    public List<Box> getChildren() {
+        return children;
     }
 
     private enum WindowState {

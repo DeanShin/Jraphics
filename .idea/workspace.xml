@@ -5,14 +5,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="570ff112-6e44-4de5-8fdb-ca139643f457" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/lib/src/main/java/org/deanshin/jraphics/datamodel/AbsoluteBox.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/src/main/java/org/deanshin/jraphics/datamodel/Element.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/src/main/java/org/deanshin/jraphics/datamodel/RelativeBox.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/src/main/java/org/deanshin/jraphics/internal/IWindowRenderer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/src/main/java/org/deanshin/jraphics/internal/WindowRenderer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/main/java/org/deanshin/jraphics/Border.java" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/main/java/org/deanshin/jraphics/Border.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/main/java/org/deanshin/jraphics/Box.java" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/main/java/org/deanshin/jraphics/Box.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/main/java/org/deanshin/jraphics/Dimensions.java" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/main/java/org/deanshin/jraphics/Dimensions.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/main/java/org/deanshin/jraphics/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/main/java/org/deanshin/jraphics/datamodel/Application.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/main/java/org/deanshin/jraphics/Border.java" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/main/java/org/deanshin/jraphics/datamodel/Border.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/main/java/org/deanshin/jraphics/Box.java" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/main/java/org/deanshin/jraphics/datamodel/Box.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/main/java/org/deanshin/jraphics/Color.java" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/main/java/org/deanshin/jraphics/datamodel/Color.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/main/java/org/deanshin/jraphics/Dimensions.java" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/main/java/org/deanshin/jraphics/datamodel/Dimensions.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/src/main/java/org/deanshin/jraphics/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/main/java/org/deanshin/jraphics/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/main/java/org/deanshin/jraphics/Offset.java" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/main/java/org/deanshin/jraphics/Offset.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/main/java/org/deanshin/jraphics/Size.java" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/main/java/org/deanshin/jraphics/Size.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/main/java/org/deanshin/jraphics/Window.java" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/main/java/org/deanshin/jraphics/Window.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/main/java/org/deanshin/jraphics/Offset.java" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/main/java/org/deanshin/jraphics/datamodel/Offset.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/main/java/org/deanshin/jraphics/Position.java" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/main/java/org/deanshin/jraphics/datamodel/Position.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/main/java/org/deanshin/jraphics/Size.java" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/main/java/org/deanshin/jraphics/datamodel/Size.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/main/java/org/deanshin/jraphics/Window.java" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/main/java/org/deanshin/jraphics/datamodel/Window.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,6 +39,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -86,7 +95,7 @@
       <module name="Jraphics.lib.main" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="org.deanshin.jraphics.*" />
+          <option name="PATTERN" value="org.deanshin.jraphics.datamodel.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -113,7 +122,9 @@
       <workItem from="1694820737827" duration="14233000" />
       <workItem from="1695152081141" duration="2239000" />
       <workItem from="1695168664763" duration="1543000" />
-      <workItem from="1695609671817" duration="2260000" />
+      <workItem from="1695609671817" duration="2992000" />
+      <workItem from="1695690106674" duration="4135000" />
+      <workItem from="1696015671644" duration="3923000" />
     </task>
     <servers />
   </component>

@@ -1,4 +1,4 @@
-package org.deanshin.jraphics;
+package org.deanshin.jraphics.datamodel;
 
 import com.google.common.base.Preconditions;
 

@@ -1,4 +1,7 @@
-package org.deanshin.jraphics;
+package org.deanshin.jraphics.datamodel;
+
+import org.deanshin.jraphics.internal.IWindowRenderer;
+import org.deanshin.jraphics.internal.WindowRenderer;
 
 import java.util.ArrayList;
 import java.util.HashMap;

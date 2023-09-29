@@ -1,19 +1,24 @@
 package org.deanshin.jraphics;
 
-import java.util.concurrent.TimeUnit;
+import org.deanshin.jraphics.datamodel.*;
+
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) throws InterruptedException {
         Application application = new Application();
-        Window window = new Window(Size.pixel(500), Size.pixel(500));
-        window.setWidth(Size.pixel(1000));
+        Window window = new Window(Size.pixel(500), Size.pixel(500))
+                .children(List.of(
+                        Box.builder()
+                                .content(c -> c.width(Size.pixel(100)).height(Size.pixel(100)))
+                                .border(b -> b.all(a -> a.color(Color.BLACK).size(Size.pixel(5))))
+                                .build(),
+                        Box.builder()
+                                .content(content -> content.width(Size.pixel(10)).height(Size.pixel(20)))
+                                .border(border -> border.all(a -> a.color(Color.BLACK).size(Size.pixel(2))))
+                                .margin(m -> m.all(Size.pixel(20)))
+                                .build()
+                ));
         application.addWindow(window);
-        TimeUnit.SECONDS.sleep(1L);
-        Window window2 = new Window(Size.pixel(400), Size.pixel(1000));
-        application.addWindow(window2);
-        TimeUnit.SECONDS.sleep(1L);
-        application.removeWindow(window2);
-        TimeUnit.SECONDS.sleep(1L);
-        application.addWindow(window2);
     }
 }

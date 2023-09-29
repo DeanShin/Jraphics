@@ -1,4 +1,4 @@
-package org.deanshin.jraphics;
+package org.deanshin.jraphics.datamodel;
 
 import java.util.List;
 import java.util.function.Function;

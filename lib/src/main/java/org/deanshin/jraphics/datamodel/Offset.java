@@ -1,4 +1,4 @@
-package org.deanshin.jraphics;
+package org.deanshin.jraphics.datamodel;
 
 public class Offset {
     private final Size left;
@@ -46,24 +46,28 @@ public class Offset {
             this.bottom = Size.ZERO;
         }
 
-        public Builder setLeft(Size left) {
+        public Builder left(Size left) {
             this.left = left;
             return this;
         }
 
-        public Builder setTop(Size top) {
+        public Builder top(Size top) {
             this.top = top;
             return this;
         }
 
-        public Builder setRight(Size right) {
+        public Builder right(Size right) {
             this.right = right;
             return this;
         }
 
-        public Builder setBottom(Size bottom) {
+        public Builder bottom(Size bottom) {
             this.bottom = bottom;
             return this;
+        }
+
+        public Builder all(Size all) {
+            return this.left(all).top(all).right(all).bottom(all);
         }
 
         public Offset build() {

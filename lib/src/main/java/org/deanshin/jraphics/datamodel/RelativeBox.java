@@ -1,26 +1,22 @@
-package org.deanshin.jraphics;
+package org.deanshin.jraphics.datamodel;
 
 import java.util.function.Function;
 
-public class Box {
-    private final Dimensions<?, ?> content;
+public class RelativeBox implements Element {
+    private final Box box;
     private final Offset padding;
     private final Border border;
     private final Offset margin;
 
-    private Box(Dimensions<?, ?> content, Offset padding, Border border, Offset margin) {
-        this.content = content;
+    public RelativeBox(Box box, Offset padding, Border border, Offset margin) {
+        this.box = box;
         this.padding = padding;
         this.border = border;
         this.margin = margin;
     }
 
-    public static Box.Builder builder() {
-        return new Builder();
-    }
-
-    public Dimensions<?, ?> getContent() {
-        return content;
+    public Box getBox() {
+        return box;
     }
 
     public Offset getPadding() {
@@ -36,20 +32,20 @@ public class Box {
     }
 
     public static class Builder {
-        private Dimensions.Builder<?, ?> content;
+        private Box.Builder box;
         private Offset.Builder padding;
         private Border.Builder border;
         private Offset.Builder margin;
 
         public Builder() {
-            this.content = Dimensions.builder();
+            this.box = Box.builder();
             this.padding = Offset.builder();
             this.border = Border.builder();
             this.margin = Offset.builder();
         }
 
-        public Builder content(Function<Dimensions.Builder<?, ?>, Dimensions.Builder<?, ?>> buildOperation) {
-            this.content = buildOperation.apply(this.content);
+        public Builder box(Function<Box.Builder, Box.Builder> buildOperation) {
+            this.box = buildOperation.apply(this.box);
             return this;
         }
 
@@ -68,8 +64,8 @@ public class Box {
             return this;
         }
 
-        public Box build() {
-            return new Box(content.build(), padding.build(), border.build(), margin.build());
+        public RelativeBox build() {
+            return new RelativeBox(box.build(), padding.build(), border.build(), margin.build());
         }
     }
 }

@@ -1,4 +1,4 @@
-package org.deanshin.jraphics;
+package org.deanshin.jraphics.datamodel;
 
 public class Dimensions<WIDTH extends Size, HEIGHT extends Size> {
     private final WIDTH width;
@@ -35,7 +35,7 @@ public class Dimensions<WIDTH extends Size, HEIGHT extends Size> {
         private Size width;
         private Size height;
 
-        public Builder() {
+        private Builder() {
             this.width = Size.auto();
             this.height = Size.auto();
         }
