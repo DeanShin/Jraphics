@@ -5,7 +5,7 @@ public class Dimensions<WIDTH extends Size, HEIGHT extends Size> {
     private final HEIGHT height;
 
 
-    public static Builder<Size.AutoSize, Size.AutoSize> builder() {
+    public static Builder<Size.Auto, Size.Auto> builder() {
         return new Builder<>();
     }
 

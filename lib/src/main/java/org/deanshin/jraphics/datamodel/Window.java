@@ -3,7 +3,10 @@ package org.deanshin.jraphics.datamodel;
 import org.deanshin.jraphics.internal.IWindowRenderer;
 import org.deanshin.jraphics.internal.WindowRenderer;
 
+import javax.swing.JFrame;
 import java.awt.Frame;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
@@ -11,7 +14,7 @@ import java.util.List;
 import java.util.function.Consumer;
 
 public class Window {
-    private Dimensions<Size.PixelSize, Size.PixelSize> dimensions;
+    private Dimensions<Size.Pixel, Size.Pixel> dimensions;
     private final Frame frame;
     private final List<Consumer<Window>> windowDisposedConsumers;
     private WindowState state;
@@ -19,34 +22,48 @@ public class Window {
     private final IWindowRenderer windowRenderer;
     private List<Element> children;
 
-    public Window(Dimensions<Size.PixelSize, Size.PixelSize> dimensions) {
+    public Window(Dimensions<Size.Pixel, Size.Pixel> dimensions) {
         this.dimensions = dimensions;
-        this.frame = new Frame();
+        Window thisWindow = this;
+        this.frame = new JFrame() {
+            @Override
+            public void paint(Graphics g) {
+                windowRenderer.render(thisWindow, (Graphics2D) g);
+            }
+        };
         this.windowDisposedConsumers = new ArrayList<>();
         this.state = WindowState.INACTIVE;
         this.children = new ArrayList<>();
         this.windowRenderer = new WindowRenderer();
     }
 
-    public Window(Size.PixelSize width, Size.PixelSize height) {
+    public Window(Size.Pixel width, Size.Pixel height) {
         this(Dimensions.builder().width(width).height(height).build());
     }
 
-    public Window setDimensions(Dimensions<Size.PixelSize, Size.PixelSize> dimensions) {
+    public Dimensions<Size.Pixel, Size.Pixel> getDimensions() {
+        return this.dimensions;
+    }
+
+    public Frame getFrame() {
+        return this.frame;
+    }
+
+    public Window setDimensions(Dimensions<Size.Pixel, Size.Pixel> dimensions) {
         this.dimensions = dimensions;
         this.frame.setSize(dimensions.getWidth().getPixels(), dimensions.getHeight().getPixels());
         return this;
     }
 
-    public Window setDimensions(Size.PixelSize width, Size.PixelSize height) {
+    public Window setDimensions(Size.Pixel width, Size.Pixel height) {
         return setDimensions(new Dimensions<>(width, height));
     }
 
-    public Window setWidth(Size.PixelSize width) {
+    public Window setWidth(Size.Pixel width) {
         return this.setDimensions(this.dimensions.withWidth(width));
     }
 
-    public Window setHeight(Size.PixelSize height) {
+    public Window setHeight(Size.Pixel height) {
         return this.setDimensions(this.dimensions.withHeight(height));
     }
 

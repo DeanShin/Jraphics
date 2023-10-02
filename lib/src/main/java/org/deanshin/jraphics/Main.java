@@ -9,14 +9,19 @@ public class Main {
         Application application = new Application();
         Window window = new Window(Size.pixel(500), Size.pixel(500))
                 .children(List.of(
-                        RelativeBox.builder()
-                                .box(box -> box.dimensions(dim -> dim.width(Size.pixel(100)).height(Size.pixel(100))))
-                                .border(b -> b.all(a -> a.color(Color.BLACK).size(Size.pixel(5))))
+                        AbsoluteBox.builder()
+                                .x(Size.pixel(100))
+                                .y(Size.pixel(100))
+                                .box(box -> box.dimensions(dim -> dim.width(Size.pixel(100)).height(Size.pixel(100)))
+                                        .color(Color.BLACK)
+                                )
+                                .border(border -> border.all(side -> side.size(Size.pixel(10)).color(Color.WHITE)))
                                 .build(),
-                        RelativeBox.builder()
+                        AbsoluteBox.builder()
                                 .box(box -> box.dimensions(dim -> dim.width(Size.pixel(100)).height(Size.pixel(100))))
-                                .border(border -> border.all(a -> a.color(Color.BLACK).size(Size.pixel(2))))
-                                .margin(m -> m.all(Size.pixel(20)))
+                                .x(Size.pixel(200))
+                                .y(Size.pixel(200))
+                                .border(border -> border.all(side -> side.size(Size.pixel(10)).color(Color.BLACK)))
                                 .build()
                 ));
         application.addWindow(window);

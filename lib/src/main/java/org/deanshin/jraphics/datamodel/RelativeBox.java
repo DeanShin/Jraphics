@@ -1,5 +1,6 @@
 package org.deanshin.jraphics.datamodel;
 
+import java.util.List;
 import java.util.function.Function;
 
 public class RelativeBox implements Element {
@@ -33,6 +34,11 @@ public class RelativeBox implements Element {
 
     public Offset getMargin() {
         return margin;
+    }
+
+    @Override
+    public List<Element> getChildren() {
+        return box.getChildren();
     }
 
     public static class Builder {

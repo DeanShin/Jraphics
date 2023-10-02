@@ -20,4 +20,8 @@ public class Color {
         this.blue = blue;
         this.alpha = alpha;
     }
+
+    public java.awt.Color toAwtColor() {
+        return new java.awt.Color(red, green, blue, (int) alpha * 255);
+    }
 }

@@ -11,8 +11,8 @@ public interface Size {
      * @param pixels the number of pixels. Must be greater than or equal to 0.
      * @return the size in pixels
      */
-    static PixelSize pixel(int pixels) {
-        return new PixelSize(pixels);
+    static Pixel pixel(int pixels) {
+        return new Pixel(pixels);
     }
 
     /**
@@ -20,8 +20,8 @@ public interface Size {
      * @param percentage the percentage, with 100 meaning that the object should take up the full width of its container element. Must be greater than or equal to 0.
      * @return the size as a percentage of the parent's size
      */
-    static PercentageSize percentage(double percentage) {
-        return new PercentageSize(percentage);
+    static Percentage percentage(double percentage) {
+        return new Percentage(percentage);
     }
 
     /**
@@ -29,44 +29,44 @@ public interface Size {
      * @param numerator the numerator of the container element that the object should take up.
      * @return the size as a numerator of the parent's size
      */
-    static FractionalSize fractional(int numerator) {
-        return new FractionalSize(numerator);
+    static Fractional fractional(int numerator) {
+        return new Fractional(numerator);
     }
 
     /**
      * Construct an auto size.
      * @return an auto size.
      */
-    static AutoSize auto() {
-        return new AutoSize();
+    static Auto auto() {
+        return new Auto();
     }
     
-    static <MIN extends Size, MAX extends Size> RangeSize<MIN, MAX> range(MIN minUnit, MAX maxUnit) {
-        return new RangeSize<>(minUnit, maxUnit);
+    static <MIN extends Size, MAX extends Size> Range<MIN, MAX> range(MIN minUnit, MAX maxUnit) {
+        return new Range<>(minUnit, maxUnit);
     }
 
-    static MinSize min(List<Size> candidates) {
-        return new MinSize(candidates);
+    static Min min(List<Size> candidates) {
+        return new Min(candidates);
     }
 
-    static MinSize min(Size... candidates) {
-        return new MinSize(Arrays.stream(candidates).toList());
+    static Min min(Size... candidates) {
+        return new Min(Arrays.stream(candidates).toList());
     }
 
-    static MaxSize max(List<Size> candidates) {
-        return new MaxSize(candidates);
+    static Max max(List<Size> candidates) {
+        return new Max(candidates);
     }
 
-    static MaxSize max(Size... candidates) {
-        return new MaxSize(Arrays.stream(candidates).toList());
+    static Max max(Size... candidates) {
+        return new Max(Arrays.stream(candidates).toList());
     }
 
-    static PixelSize ZERO = new PixelSize(0);
+    static Pixel ZERO = new Pixel(0);
 
-    class PixelSize implements Size {
+    class Pixel implements Size {
         private final int pixels;
 
-        private PixelSize(int pixels) {
+        private Pixel(int pixels) {
             Preconditions.checkState(pixels >= 0);
             this.pixels = pixels;
         }
@@ -74,12 +74,20 @@ public interface Size {
         public int getPixels() {
             return pixels;
         }
+
+        public Pixel add(Pixel other) {
+            return new Pixel(pixels + other.pixels);
+        }
+
+        public Pixel subtract(Pixel other) {
+            return new Pixel(pixels - other.pixels);
+        }
     }
 
-    class PercentageSize implements Size {
+    class Percentage implements Size {
         private final double percentage;
 
-        private PercentageSize(double percentage) {
+        private Percentage(double percentage) {
             Preconditions.checkState(percentage >= 0);
             this.percentage = percentage;
         }
@@ -89,10 +97,10 @@ public interface Size {
         }
     }
 
-    class FractionalSize implements Size {
+    class Fractional implements Size {
         private final int numerator;
 
-        private FractionalSize(int numerator) {
+        private Fractional(int numerator) {
             Preconditions.checkState(numerator > 0);
             this.numerator = numerator;
         }
@@ -102,17 +110,17 @@ public interface Size {
         }
     }
 
-    class AutoSize implements Size {
-        private AutoSize() {
+    class Auto implements Size {
+        private Auto() {
 
         }
     }
 
-    class RangeSize<MIN extends Size, MAX extends Size> implements Size {
+    class Range<MIN extends Size, MAX extends Size> implements Size {
         private final MIN minUnit;
         private final MAX maxUnit;
 
-        private RangeSize(MIN minUnit, MAX maxUnit) {
+        private Range(MIN minUnit, MAX maxUnit) {
             this.minUnit = minUnit;
             this.maxUnit = maxUnit;
         }
@@ -126,10 +134,10 @@ public interface Size {
         }
     }
 
-    class MinSize implements Size {
+    class Min implements Size {
         private final List<Size> candidates;
 
-        private MinSize(List<Size> candidates) {
+        private Min(List<Size> candidates) {
             Preconditions.checkState(!candidates.isEmpty());
             this.candidates = candidates;
         }
@@ -139,10 +147,10 @@ public interface Size {
         }
     }
 
-    class MaxSize implements Size {
+    class Max implements Size {
         private final List<Size> candidates;
 
-        private MaxSize(List<Size> candidates) {
+        private Max(List<Size> candidates) {
             Preconditions.checkState(!candidates.isEmpty());
             this.candidates = candidates;
         }
