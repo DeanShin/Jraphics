@@ -14,6 +14,13 @@ public class Main {
                                 .y(Size.pixel(100))
                                 .box(box -> box.dimensions(dim -> dim.width(Size.pixel(100)).height(Size.pixel(100)))
                                         .color(Color.BLACK)
+                                        .children(
+                                                AbsoluteBox.builder()
+                                                    .x(Size.pixel(25))
+                                                    .y(Size.pixel(25))
+                                                    .box(innerBox -> innerBox.dimensions(dim -> dim.width(Size.pixel(50)).height(Size.pixel(50))))
+                                                    .build()
+                                        )
                                 )
                                 .border(border -> border.all(side -> side.size(Size.pixel(10)).color(Color.WHITE)))
                                 .build(),

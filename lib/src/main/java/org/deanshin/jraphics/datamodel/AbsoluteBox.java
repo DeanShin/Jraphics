@@ -42,10 +42,10 @@ public class AbsoluteBox implements Element {
     }
 
     public static class Builder {
-        public Box.Builder box;
-        public Border.Builder border;
-        public Size x;
-        public Size y;
+        private Box.Builder box;
+        private Border.Builder border;
+        private Size x;
+        private Size y;
 
         private Builder() {
             box = Box.builder();
