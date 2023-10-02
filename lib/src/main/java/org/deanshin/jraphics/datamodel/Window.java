@@ -17,7 +17,7 @@ public class Window {
     private WindowState state;
 
     private final IWindowRenderer windowRenderer;
-    private List<Box> children;
+    private List<Element> children;
 
     public Window(Dimensions<Size.PixelSize, Size.PixelSize> dimensions) {
         this.dimensions = dimensions;
@@ -60,7 +60,7 @@ public class Window {
         return this;
     }
 
-    public Window children(List<Box> children) {
+    public Window children(List<Element> children) {
         this.children = children;
         return this;
     }
@@ -91,7 +91,7 @@ public class Window {
         this.state = WindowState.INACTIVE;
     }
 
-    public List<Box> getChildren() {
+    public List<Element> getChildren() {
         return children;
     }
 

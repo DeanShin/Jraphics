@@ -13,6 +13,10 @@ public class AbsoluteBox implements Element {
         this.y = y;
     }
 
+    public static Builder builder() {
+        return new Builder();
+    }
+
     public Box getBox() {
         return box;
     }

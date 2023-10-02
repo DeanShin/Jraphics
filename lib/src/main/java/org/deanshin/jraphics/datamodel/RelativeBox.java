@@ -15,6 +15,10 @@ public class RelativeBox implements Element {
         this.margin = margin;
     }
 
+    public static Builder builder() {
+        return new Builder();
+    }
+
     public Box getBox() {
         return box;
     }
