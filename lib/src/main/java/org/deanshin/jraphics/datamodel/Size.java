@@ -86,6 +86,14 @@ public interface Size {
 		public Pixel subtract(Pixel other) {
 			return new Pixel(pixels - other.pixels);
 		}
+
+		public Pixel max(Pixel other) {
+			if (this.pixels > other.pixels) {
+				return this;
+			} else {
+				return other;
+			}
+		}
 	}
 
 	class Percentage implements Size {

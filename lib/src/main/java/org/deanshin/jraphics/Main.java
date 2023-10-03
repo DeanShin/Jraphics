@@ -29,6 +29,19 @@ public class Main {
 					.x(Size.pixel(200))
 					.y(Size.pixel(200))
 					.border(border -> border.all(side -> side.size(Size.pixel(10)).color(Color.BLACK)))
+					.build(),
+				RelativeBox.builder()
+					.box(box -> box.dimensions(dim -> dim.width(Size.pixel(500)).height(Size.pixel(100)))
+						.color(Color.BLACK))
+					.build(),
+				RelativeBox.builder()
+					.box(box -> box.dimensions(dim -> dim.width(Size.pixel(400)).height(Size.pixel(100)))
+						.color(Color.WHITE))
+					.build(),
+				RelativeBox.builder()
+					.box(box -> box.dimensions(dim -> dim.width(Size.pixel(400)).height(Size.pixel(100)))
+						.color(Color.WHITE))
+					.margin(margin -> margin.top(Size.pixel(100)).left(Size.pixel(50)))
 					.build()
 			));
 		application.addWindow(window);

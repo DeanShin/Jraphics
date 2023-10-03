@@ -1,4 +1,5 @@
 package org.deanshin.jraphics.datamodel;
 
-public interface Element {
+public interface HasBox {
+	Box getBox();
 }
