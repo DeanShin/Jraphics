@@ -47,10 +47,6 @@ public interface Size {
 		return new Auto();
 	}
 
-	static <MIN extends Size, MAX extends Size> Range<MIN, MAX> range(MIN minUnit, MAX maxUnit) {
-		return new Range<>(minUnit, maxUnit);
-	}
-
 	static Min min(List<Size> candidates) {
 		return new Min(candidates);
 	}
@@ -87,12 +83,8 @@ public interface Size {
 			return new Pixel(pixels - other.pixels);
 		}
 
-		public Pixel max(Pixel other) {
-			if (this.pixels > other.pixels) {
-				return this;
-			} else {
-				return other;
-			}
+		public Pixel multiply(double other) {
+			return new Pixel((int) Math.floor(((double) pixels) * other));
 		}
 	}
 
@@ -125,24 +117,6 @@ public interface Size {
 	class Auto implements Size {
 		private Auto() {
 
-		}
-	}
-
-	class Range<MIN extends Size, MAX extends Size> implements Size {
-		private final MIN minUnit;
-		private final MAX maxUnit;
-
-		private Range(MIN minUnit, MAX maxUnit) {
-			this.minUnit = minUnit;
-			this.maxUnit = maxUnit;
-		}
-
-		public MIN getMinUnit() {
-			return minUnit;
-		}
-
-		public MAX getMaxUnit() {
-			return maxUnit;
 		}
 	}
 

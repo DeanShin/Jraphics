@@ -56,10 +56,10 @@ public class WindowRenderer implements IWindowRenderer {
 			);
 		}
 		if (element instanceof HasBorder hasBorder) {
-			renderSide(graphics, Side.LEFT, hasBorder.getBorder().getLeft(), finalizedElementBox);
-			renderSide(graphics, Side.TOP, hasBorder.getBorder().getTop(), finalizedElementBox);
-			renderSide(graphics, Side.RIGHT, hasBorder.getBorder().getRight(), finalizedElementBox);
-			renderSide(graphics, Side.BOTTOM, hasBorder.getBorder().getBottom(), finalizedElementBox);
+			renderSide(graphics, Side.LEFT, hasBorder.getBorder().getLeft(), finalizedElementBox, parentBox);
+			renderSide(graphics, Side.TOP, hasBorder.getBorder().getTop(), finalizedElementBox, parentBox);
+			renderSide(graphics, Side.RIGHT, hasBorder.getBorder().getRight(), finalizedElementBox, parentBox);
+			renderSide(graphics, Side.BOTTOM, hasBorder.getBorder().getBottom(), finalizedElementBox, parentBox);
 		}
 		if (element instanceof HasChildren hasChildren) {
 			renderChildren(graphics, finalizedElementBox, hasChildren.getChildren());
@@ -75,48 +75,21 @@ public class WindowRenderer implements IWindowRenderer {
 	) {
 		if (element instanceof AbsoluteBox absoluteBox) {
 			return new FinalizedBox(
-				parentBox.x.add((Size.Pixel) absoluteBox.getX()),
-				parentBox.y.add((Size.Pixel) absoluteBox.getY()),
-				(Size.Pixel) absoluteBox.getBox().getDimensions().getWidth(),
-				(Size.Pixel) absoluteBox.getBox().getDimensions().getHeight(),
+				parentBox.x.add(sizeInPixels(absoluteBox.getX(), parentBox.width)),
+				parentBox.y.add(sizeInPixels(absoluteBox.getY(), parentBox.height)),
+				sizeInPixels(absoluteBox.getBox().getDimensions().getWidth(), parentBox.width),
+				sizeInPixels(absoluteBox.getBox().getDimensions().getHeight(), parentBox.height),
 				element
 			);
 		} else if (element instanceof RelativeBox relativeBox) {
-			Size.Pixel x = Stream.of(
-					Stream.of(parentBox.x.add((Size.Pixel) relativeBox.getMargin().getLeft())),
-					parentBox.element() instanceof HasPadding hasPadding ?
-						Stream.of((Size.Pixel) hasPadding.getPadding().getLeft()) :
-						Stream.<Size.Pixel>empty()
-				)
-				.flatMap(s -> s)
-				.max(Comparator.comparingInt(Size.Pixel::getPixels))
-				.orElseThrow();
-
-			Size.Pixel y = Stream.of(
-					previousSiblingBox == null ?
-						Stream.<Size.Pixel>empty() :
-						Stream.of(
-							previousSiblingBox.y.add(previousSiblingBox.height)
-								.add(previousSiblingBox.element instanceof HasMargin hasMargin ?
-									(Size.Pixel) hasMargin.getMargin().getBottom() :
-									Size.ZERO
-								),
-							previousSiblingBox.y.add(previousSiblingBox.height).add((Size.Pixel) relativeBox.getMargin().getTop())
-						),
-					Stream.of(parentBox.y.add((Size.Pixel) relativeBox.getMargin().getTop())),
-					parentBox.element() instanceof HasPadding hasPadding ?
-						Stream.of((Size.Pixel) hasPadding.getPadding().getTop()) :
-						Stream.<Size.Pixel>empty()
-				)
-				.flatMap(s -> s)
-				.max(Comparator.comparingInt(Size.Pixel::getPixels))
-				.orElseThrow();
+			Size.Pixel x = getRelativeBoxFinalizedX(parentBox, relativeBox);
+			Size.Pixel y = getRelativeBoxFinalizedY(parentBox, previousSiblingBox, relativeBox);
 
 			return new FinalizedBox(
 				x,
 				y,
-				(Size.Pixel) relativeBox.getBox().getDimensions().getWidth(),
-				(Size.Pixel) relativeBox.getBox().getDimensions().getHeight(),
+				sizeInPixels(relativeBox.getBox().getDimensions().getWidth(), parentBox.width),
+				sizeInPixels(relativeBox.getBox().getDimensions().getHeight(), parentBox.height),
 				element
 			);
 		} else {
@@ -124,26 +97,89 @@ public class WindowRenderer implements IWindowRenderer {
 		}
 	}
 
-	private void renderSide(Graphics2D graphics, Side side, Border.BorderSide borderSide, FinalizedBox bounds) {
+	private Size.Pixel sizeInPixels(Size size, Size.Pixel parentSize) {
+		if (size instanceof Size.Pixel pixel) {
+			return pixel;
+		} else if (size instanceof Size.Auto auto) {
+			throw new UnsupportedOperationException();
+		} else if (size instanceof Size.Percentage percentage) {
+			return parentSize.multiply(percentage.getPercentage() / 100.0);
+		} else if (size instanceof Size.Min min) {
+			return min.getCandidates().stream()
+				.map(candidate -> sizeInPixels(candidate, parentSize))
+				.min(Comparator.comparingInt(Size.Pixel::getPixels))
+				.orElseThrow();
+		} else if (size instanceof Size.Max max) {
+			return max.getCandidates().stream()
+				.map(candidate -> sizeInPixels(candidate, parentSize))
+				.max(Comparator.comparingInt(Size.Pixel::getPixels))
+				.orElseThrow();
+		} else {
+			throw new UnsupportedOperationException();
+		}
+	}
+
+	private void renderSide(
+		Graphics2D graphics,
+		Side side,
+		Border.BorderSide borderSide,
+		FinalizedBox bounds,
+		FinalizedBox parent
+	) {
 		graphics.setColor(borderSide.getColor().toAwtColor());
 
 		Size.Pixel x = bounds.x;
 		Size.Pixel y = bounds.y;
 		if (side == Side.RIGHT) {
-			x = bounds.x.add(bounds.width).subtract((Size.Pixel) borderSide.getSize());
+			x = bounds.x.add(bounds.width).subtract(sizeInPixels(borderSide.getSize(), parent.width));
 		} else if (side == Side.BOTTOM) {
-			y = bounds.y.add(bounds.width).subtract((Size.Pixel) borderSide.getSize());
+			y = bounds.y.add(bounds.height).subtract(sizeInPixels(borderSide.getSize(), parent.height));
 		}
 
 		Size.Pixel width = bounds.width;
 		Size.Pixel height = bounds.height;
 		if (side == Side.LEFT || side == Side.RIGHT) {
-			width = (Size.Pixel) borderSide.getSize();
+			width = sizeInPixels(borderSide.getSize(), parent.width);
 		} else {
-			height = (Size.Pixel) borderSide.getSize();
+			height = sizeInPixels(borderSide.getSize(), parent.height);
 		}
 
 		graphics.fillRect(x.getPixels(), y.getPixels(), width.getPixels(), height.getPixels());
+	}
+
+	private Size.Pixel getRelativeBoxFinalizedX(FinalizedBox parentBox, RelativeBox relativeBox) {
+		return Stream.of(
+				Stream.of(parentBox.x.add(sizeInPixels(relativeBox.getMargin().getLeft(), parentBox.width))),
+				parentBox.element() instanceof HasPadding hasPadding ?
+					Stream.of(sizeInPixels(hasPadding.getPadding().getLeft(), parentBox.width)) :
+					Stream.<Size.Pixel>empty()
+			)
+			.flatMap(s -> s)
+			.max(Comparator.comparingInt(Size.Pixel::getPixels))
+			.orElseThrow();
+	}
+
+	private Size.Pixel getRelativeBoxFinalizedY(FinalizedBox parentBox, FinalizedBox previousSiblingBox, RelativeBox relativeBox) {
+		return Stream.of(
+				previousSiblingBox == null ?
+					Stream.<Size.Pixel>empty() :
+					Stream.of(
+						previousSiblingBox.y.add(previousSiblingBox.height)
+							.add(previousSiblingBox.element instanceof HasMargin hasMargin ?
+								sizeInPixels(hasMargin.getMargin().getBottom(), parentBox.height) :
+								Size.ZERO
+							),
+						previousSiblingBox.y.add(previousSiblingBox.height)
+							.add(sizeInPixels(relativeBox.getMargin().getTop(), parentBox.height))
+					),
+				Stream.of(parentBox.y.add(sizeInPixels(relativeBox.getMargin().getTop(), parentBox.height))),
+				parentBox.element() instanceof HasPadding hasPadding ?
+					Stream.of(sizeInPixels(hasPadding.getPadding().getTop(), parentBox.height)) :
+					Stream.<Size.Pixel>empty()
+			)
+			.flatMap(s -> s)
+			.max(Comparator.comparingInt(Size.Pixel::getPixels))
+			.orElseThrow();
 	}
 
 	private enum Side {
