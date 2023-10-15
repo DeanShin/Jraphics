@@ -38,15 +38,6 @@ public interface Size {
 		return new Fractional(numerator);
 	}
 
-	/**
-	 * Construct an auto size.
-	 *
-	 * @return an auto size.
-	 */
-	static Auto auto() {
-		return new Auto();
-	}
-
 	static Min min(List<Size> candidates) {
 		return new Min(candidates);
 	}
@@ -111,12 +102,6 @@ public interface Size {
 
 		public int getNumerator() {
 			return numerator;
-		}
-	}
-
-	class Auto implements Size {
-		private Auto() {
-
 		}
 	}
 

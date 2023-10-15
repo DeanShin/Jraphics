@@ -1,7 +1,7 @@
 package org.deanshin.jraphics.datamodel;
 
-import org.deanshin.jraphics.internal.IWindowRenderer;
 import org.deanshin.jraphics.internal.WindowRenderer;
+import org.deanshin.jraphics.internal.WindowRendererImpl;
 
 import javax.swing.JFrame;
 import java.awt.Frame;
@@ -16,7 +16,7 @@ import java.util.function.Consumer;
 public class Window {
 	private final Frame frame;
 	private final List<Consumer<Window>> windowDisposedConsumers;
-	private final IWindowRenderer windowRenderer;
+	private final WindowRenderer windowRenderer;
 	private Dimensions<Size.Pixel, Size.Pixel> dimensions;
 	private WindowState state;
 	private List<Element> children;
@@ -33,7 +33,7 @@ public class Window {
 		this.windowDisposedConsumers = new ArrayList<>();
 		this.state = WindowState.INACTIVE;
 		this.children = new ArrayList<>();
-		this.windowRenderer = new WindowRenderer();
+		this.windowRenderer = new WindowRendererImpl();
 	}
 
 	public Window(Size.Pixel width, Size.Pixel height) {

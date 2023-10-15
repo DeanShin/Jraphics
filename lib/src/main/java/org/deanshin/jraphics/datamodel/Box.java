@@ -53,8 +53,14 @@ public class Box {
 			return this;
 		}
 
-		public Builder children(Element... children) {
+		public Builder children(Element.HasSiblings... children) {
 			this.children.addAll(Arrays.stream(children).toList());
+			return this;
+		}
+
+		public Builder child(Element.HasNoSiblings child) {
+			this.children.clear();
+			this.children.add(child);
 			return this;
 		}
 

@@ -3,7 +3,7 @@ package org.deanshin.jraphics.datamodel;
 import java.util.List;
 import java.util.function.Function;
 
-public class AbsoluteBox implements Element, HasPadding, HasChildren, HasBorder, HasBox {
+public class AbsoluteBox implements Element.HasSiblings, HasPadding, HasChildren, HasBorder, HasBox {
 	private final Box box;
 	private final Border border;
 	private final Size x;

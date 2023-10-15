@@ -8,9 +8,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="570ff112-6e44-4de5-8fdb-ca139643f457" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/lib/src/main/java/org/deanshin/jraphics/datamodel/Text.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/src/main/java/org/deanshin/jraphics/internal/AbsoluteBoxRenderer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/src/main/java/org/deanshin/jraphics/internal/FinalizedBox.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/src/main/java/org/deanshin/jraphics/internal/RelativeBoxRenderer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/src/main/java/org/deanshin/jraphics/internal/Renderer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/src/main/java/org/deanshin/jraphics/internal/RenderingUtilService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/src/main/java/org/deanshin/jraphics/internal/RenderingUtilServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/src/main/java/org/deanshin/jraphics/internal/TextRenderer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/src/main/java/org/deanshin/jraphics/internal/WindowRendererImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/main/java/org/deanshin/jraphics/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/main/java/org/deanshin/jraphics/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/main/java/org/deanshin/jraphics/datamodel/AbsoluteBox.java" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/main/java/org/deanshin/jraphics/datamodel/AbsoluteBox.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/main/java/org/deanshin/jraphics/datamodel/Box.java" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/main/java/org/deanshin/jraphics/datamodel/Box.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/main/java/org/deanshin/jraphics/datamodel/Dimensions.java" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/main/java/org/deanshin/jraphics/datamodel/Dimensions.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/main/java/org/deanshin/jraphics/datamodel/Element.java" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/main/java/org/deanshin/jraphics/datamodel/Element.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/main/java/org/deanshin/jraphics/datamodel/RelativeBox.java" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/main/java/org/deanshin/jraphics/datamodel/RelativeBox.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/src/main/java/org/deanshin/jraphics/datamodel/Size.java" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/main/java/org/deanshin/jraphics/datamodel/Size.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/main/java/org/deanshin/jraphics/datamodel/Window.java" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/main/java/org/deanshin/jraphics/datamodel/Window.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/main/java/org/deanshin/jraphics/internal/IWindowRenderer.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/src/main/java/org/deanshin/jraphics/internal/WindowRenderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/main/java/org/deanshin/jraphics/internal/WindowRenderer.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -29,8 +44,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -45,10 +60,15 @@
     <setting file="jar://$USER_HOME$/Library/Java/JavaVirtualMachines/corretto-19.0.2/Contents/Home/lib/src.zip!/java.base/java/util/ConcurrentModificationException.java" root0="SKIP_INSPECTION" />
     <setting file="jar://$USER_HOME$/Library/Java/JavaVirtualMachines/corretto-19.0.2/Contents/Home/lib/src.zip!/java.desktop/java/awt/Color.java" root0="SKIP_INSPECTION" />
     <setting file="jar://$USER_HOME$/Library/Java/JavaVirtualMachines/corretto-19.0.2/Contents/Home/lib/src.zip!/java.desktop/java/awt/Dimension.java" root0="SKIP_INSPECTION" />
+    <setting file="jar://$USER_HOME$/Library/Java/JavaVirtualMachines/corretto-19.0.2/Contents/Home/lib/src.zip!/java.desktop/java/awt/FontMetrics.java" root0="SKIP_INSPECTION" />
     <setting file="jar://$USER_HOME$/Library/Java/JavaVirtualMachines/corretto-19.0.2/Contents/Home/lib/src.zip!/java.desktop/java/awt/Frame.java" root0="SKIP_INSPECTION" />
     <setting file="jar://$USER_HOME$/Library/Java/JavaVirtualMachines/corretto-19.0.2/Contents/Home/lib/src.zip!/java.desktop/java/awt/Graphics.java" root0="SKIP_INSPECTION" />
+    <setting file="jar://$USER_HOME$/Library/Java/JavaVirtualMachines/corretto-19.0.2/Contents/Home/lib/src.zip!/java.desktop/java/awt/Graphics2D.java" root0="SKIP_INSPECTION" />
+    <setting file="jar://$USER_HOME$/Library/Java/JavaVirtualMachines/corretto-19.0.2/Contents/Home/lib/src.zip!/java.desktop/java/awt/Label.java" root0="SKIP_INSPECTION" />
     <setting file="jar://$USER_HOME$/Library/Java/JavaVirtualMachines/corretto-19.0.2/Contents/Home/lib/src.zip!/java.desktop/java/awt/Rectangle.java" root0="SKIP_INSPECTION" />
+    <setting file="jar://$USER_HOME$/Library/Java/JavaVirtualMachines/corretto-19.0.2/Contents/Home/lib/src.zip!/java.desktop/java/awt/TextField.java" root0="SKIP_INSPECTION" />
     <setting file="jar://$USER_HOME$/Library/Java/JavaVirtualMachines/corretto-19.0.2/Contents/Home/lib/src.zip!/java.desktop/java/awt/Window.java" root0="SKIP_INSPECTION" />
+    <setting file="jar://$USER_HOME$/Library/Java/JavaVirtualMachines/corretto-19.0.2/Contents/Home/lib/src.zip!/java.desktop/sun/font/FontDesignMetrics.java" root0="SKIP_INSPECTION" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -131,7 +151,8 @@
       <workItem from="1696015671644" duration="5150000" />
       <workItem from="1696213951127" duration="3822000" />
       <workItem from="1696281437096" duration="10292000" />
-      <workItem from="1696882493699" duration="3007000" />
+      <workItem from="1696882493699" duration="8538000" />
+      <workItem from="1697394965601" duration="3871000" />
     </task>
     <servers />
   </component>

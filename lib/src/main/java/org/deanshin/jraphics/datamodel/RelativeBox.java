@@ -3,7 +3,7 @@ package org.deanshin.jraphics.datamodel;
 import java.util.List;
 import java.util.function.Function;
 
-public class RelativeBox implements Element, HasPadding, HasMargin, HasChildren, HasBorder, HasBox {
+public class RelativeBox implements Element.HasSiblings, HasPadding, HasMargin, HasChildren, HasBorder, HasBox {
 	private final Box box;
 	private final Offset padding;
 	private final Border border;

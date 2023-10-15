@@ -10,7 +10,7 @@ public class Dimensions<WIDTH extends Size, HEIGHT extends Size> {
 		this.height = height;
 	}
 
-	public static Builder<Size.Auto, Size.Auto> builder() {
+	public static Builder<Size.Pixel, Size.Pixel> builder() {
 		return new Builder<>();
 	}
 
@@ -36,8 +36,8 @@ public class Dimensions<WIDTH extends Size, HEIGHT extends Size> {
 		private Size height;
 
 		private Builder() {
-			this.width = Size.auto();
-			this.height = Size.auto();
+			this.width = Size.pixel(100);
+			this.height = Size.pixel(100);
 		}
 
 		@SuppressWarnings("unchecked")
