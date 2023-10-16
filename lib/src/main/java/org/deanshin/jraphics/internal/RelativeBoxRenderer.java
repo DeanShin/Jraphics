@@ -38,7 +38,7 @@ class RelativeBoxRenderer implements Renderer<RelativeBox> {
 
 	private Size.Pixel getX(FinalizedBox parentBox, RelativeBox relativeBox) {
 		return Stream.of(
-				Stream.of(parentBox.x().add(renderingUtilService.sizeInPixels(relativeBox.getMargin().getLeft(), parentBox.width()))),
+				Stream.of(parentBox.x().plus(renderingUtilService.sizeInPixels(relativeBox.getMargin().getLeft(), parentBox.width()))),
 				parentBox.element() instanceof HasPadding hasPadding ?
 					Stream.of(renderingUtilService.sizeInPixels(hasPadding.getPadding().getLeft(), parentBox.width())) :
 					Stream.<Size.Pixel>empty()
@@ -53,15 +53,15 @@ class RelativeBoxRenderer implements Renderer<RelativeBox> {
 				previousSiblingBox == null ?
 					Stream.<Size.Pixel>empty() :
 					Stream.of(
-						previousSiblingBox.y().add(previousSiblingBox.height())
-							.add(previousSiblingBox.element() instanceof HasMargin hasMargin ?
+						previousSiblingBox.y().plus(previousSiblingBox.height())
+							.plus(previousSiblingBox.element() instanceof HasMargin hasMargin ?
 								renderingUtilService.sizeInPixels(hasMargin.getMargin().getBottom(), parentBox.height()) :
 								Size.ZERO
 							),
-						previousSiblingBox.y().add(previousSiblingBox.height())
-							.add(renderingUtilService.sizeInPixels(relativeBox.getMargin().getTop(), parentBox.height()))
+						previousSiblingBox.y().plus(previousSiblingBox.height())
+							.plus(renderingUtilService.sizeInPixels(relativeBox.getMargin().getTop(), parentBox.height()))
 					),
-				Stream.of(parentBox.y().add(renderingUtilService.sizeInPixels(relativeBox.getMargin().getTop(), parentBox.height()))),
+				Stream.of(parentBox.y().plus(renderingUtilService.sizeInPixels(relativeBox.getMargin().getTop(), parentBox.height()))),
 				parentBox.element() instanceof HasPadding hasPadding ?
 					Stream.of(renderingUtilService.sizeInPixels(hasPadding.getPadding().getTop(), parentBox.height())) :
 					Stream.<Size.Pixel>empty()

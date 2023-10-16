@@ -66,15 +66,15 @@ public interface Size {
 			return pixels;
 		}
 
-		public Pixel add(Pixel other) {
+		public Pixel plus(Pixel other) {
 			return new Pixel(pixels + other.pixels);
 		}
 
-		public Pixel subtract(Pixel other) {
+		public Pixel minus(Pixel other) {
 			return new Pixel(pixels - other.pixels);
 		}
 
-		public Pixel multiply(double other) {
+		public Pixel times(double other) {
 			return new Pixel((int) Math.floor(((double) pixels) * other));
 		}
 	}

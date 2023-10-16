@@ -1,10 +1,8 @@
 package org.deanshin.jraphics.internal;
 
-import org.deanshin.jraphics.datamodel.Border;
-import org.deanshin.jraphics.datamodel.HasBorder;
-import org.deanshin.jraphics.datamodel.HasBox;
-import org.deanshin.jraphics.datamodel.Size;
+import org.deanshin.jraphics.datamodel.*;
 
+import javax.annotation.Nullable;
 import java.awt.Graphics2D;
 import java.util.Comparator;
 
@@ -13,7 +11,7 @@ class RenderingUtilServiceImpl implements RenderingUtilService {
 		if (size instanceof Size.Pixel pixel) {
 			return pixel;
 		} else if (size instanceof Size.Percentage percentage) {
-			return parentSize.multiply(percentage.getPercentage() / 100.0);
+			return parentSize.times(percentage.getPercentage() / 100.0);
 		} else if (size instanceof Size.Min min) {
 			return min.getCandidates().stream()
 				.map(candidate -> sizeInPixels(candidate, parentSize))
@@ -27,6 +25,21 @@ class RenderingUtilServiceImpl implements RenderingUtilService {
 		} else {
 			throw new UnsupportedOperationException();
 		}
+	}
+
+	@Override
+	public FinalizedBox contentBox(FinalizedBox finalizedBox, FinalizedBox parentBox, @Nullable Element element) {
+		Size.Pixel leftPadding = finalizedBox.element() instanceof HasPadding padding ? sizeInPixels(padding.getPadding().getLeft(), parentBox.width()) : Size.ZERO;
+		Size.Pixel topPadding = finalizedBox.element() instanceof HasPadding padding ? sizeInPixels(padding.getPadding().getTop(), parentBox.height()) : Size.ZERO;
+		Size.Pixel rightPadding = finalizedBox.element() instanceof HasPadding padding ? sizeInPixels(padding.getPadding().getRight(), parentBox.width()) : Size.ZERO;
+		Size.Pixel bottomPadding = finalizedBox.element() instanceof HasPadding padding ? sizeInPixels(padding.getPadding().getBottom(), parentBox.height()) : Size.ZERO;
+		return new FinalizedBox(
+			finalizedBox.x().plus(leftPadding),
+			finalizedBox.y().plus(topPadding),
+			finalizedBox.width().minus(leftPadding).minus(rightPadding),
+			finalizedBox.height().minus(topPadding).minus(bottomPadding),
+			element
+		);
 	}
 
 	public void renderBox(Graphics2D graphics, HasBox hasBox, FinalizedBox finalizedBox) {
@@ -58,9 +71,9 @@ class RenderingUtilServiceImpl implements RenderingUtilService {
 		Size.Pixel x = bounds.x();
 		Size.Pixel y = bounds.y();
 		if (side == Side.RIGHT) {
-			x = bounds.x().add(bounds.width()).subtract(sizeInPixels(borderSide.getSize(), parent.width()));
+			x = bounds.x().plus(bounds.width()).minus(sizeInPixels(borderSide.getSize(), parent.width()));
 		} else if (side == Side.BOTTOM) {
-			y = bounds.y().add(bounds.height()).subtract(sizeInPixels(borderSide.getSize(), parent.height()));
+			y = bounds.y().plus(bounds.height()).minus(sizeInPixels(borderSide.getSize(), parent.height()));
 		}
 
 		Size.Pixel width = bounds.width();

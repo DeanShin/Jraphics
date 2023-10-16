@@ -20,8 +20,8 @@ class AbsoluteBoxRenderer implements Renderer<AbsoluteBox> {
 	@Override
 	public FinalizedBox getBounds(AbsoluteBox element, Graphics2D graphics2D, FinalizedBox parentBox, @Nullable FinalizedBox previousSiblingBox) {
 		return new FinalizedBox(
-			parentBox.x().add(renderingUtilService.sizeInPixels(element.getX(), parentBox.width())),
-			parentBox.y().add(renderingUtilService.sizeInPixels(element.getY(), parentBox.height())),
+			parentBox.x().plus(renderingUtilService.sizeInPixels(element.getX(), parentBox.width())),
+			parentBox.y().plus(renderingUtilService.sizeInPixels(element.getY(), parentBox.height())),
 			renderingUtilService.sizeInPixels(element.getBox().getDimensions().getWidth(), parentBox.width()),
 			renderingUtilService.sizeInPixels(element.getBox().getDimensions().getHeight(), parentBox.height()),
 			element

@@ -16,7 +16,7 @@ public class WindowRendererImpl implements WindowRenderer {
 	public WindowRendererImpl() {
 		RenderingUtilService renderingUtilService = new RenderingUtilServiceImpl();
 		this.renderers = Stream.of(
-			new TextRenderer(),
+			new TextRenderer(renderingUtilService),
 			new AbsoluteBoxRenderer(renderingUtilService),
 			new RelativeBoxRenderer(renderingUtilService)
 		).collect(Collectors.toMap(Renderer::getElementClass, r -> r));
@@ -65,6 +65,4 @@ public class WindowRendererImpl implements WindowRenderer {
 
 		return finalizedBox;
 	}
-
-
 }
