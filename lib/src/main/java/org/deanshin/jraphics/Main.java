@@ -2,7 +2,6 @@ package org.deanshin.jraphics;
 
 import org.deanshin.jraphics.datamodel.*;
 
-import java.awt.Font;
 import java.util.List;
 
 public class Main {
@@ -39,7 +38,15 @@ public class Main {
 					.padding(padding -> padding.all(Size.pixel(20)))
 					.box(box -> box.dimensions(dim -> dim.width(Size.pixel(400)).height(Size.pixel(100)))
 						.color(Color.WHITE)
-						.child(new Text("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.", Color.BLACK, new Font("Arial", Font.PLAIN, 12), Size.pixel(12))))
+						.child(
+							Text.builder()
+								.text("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.")
+								.color(Color.BLACK)
+								.lineHeight(Size.pixel(16))
+								.align(Text.Align.CENTER)
+								.build()
+						)
+					)
 					.build(),
 				RelativeBox.builder()
 					.box(box -> box.dimensions(dim -> dim.width(Size.pixel(400)).height(Size.pixel(100)))

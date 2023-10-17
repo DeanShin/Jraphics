@@ -38,12 +38,28 @@ class TextRenderer implements Renderer<Text> {
 		List<String> lines = breakIntoLines(element.getText(), finalizedBox.width().getPixels(), fontMetrics);
 		Size.Pixel yOffset = Size.pixel(fontMetrics.getAscent());
 		for (int lineIndex = 0; lineIndex < lines.size(); lineIndex++) {
+			int lineWidth = fontMetrics.stringWidth(lines.get(lineIndex));
 			graphics.drawString(
 				lines.get(lineIndex),
-				finalizedBox.x().getPixels(),
+				getLineX(element, finalizedBox, lineWidth),
 				finalizedBox.y().plus(element.getLineHeight().times(lineIndex)).plus(yOffset).getPixels()
 			);
 		}
+	}
+
+	private int getLineX(Text element, FinalizedBox finalizedBox, int lineWidth) {
+		return switch (element.getAlign()) {
+			case LEFT -> finalizedBox.x().getPixels();
+			case RIGHT -> finalizedBox.x()
+				.plus(finalizedBox.width())
+				.minus(Size.pixel(lineWidth))
+				.getPixels();
+			case CENTER -> finalizedBox.x()
+				.plus(finalizedBox.width())
+				.minus(Size.pixel(lineWidth))
+				.times(0.5)
+				.getPixels();
+		};
 	}
 
 	private List<String> breakIntoLines(String label, int maxWidth, FontMetrics fontMetrics) {

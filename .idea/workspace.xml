@@ -10,14 +10,8 @@
     <list default="true" id="570ff112-6e44-4de5-8fdb-ca139643f457" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/src/main/java/org/deanshin/jraphics/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/main/java/org/deanshin/jraphics/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/main/java/org/deanshin/jraphics/datamodel/Size.java" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/main/java/org/deanshin/jraphics/datamodel/Size.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/src/main/java/org/deanshin/jraphics/datamodel/Text.java" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/main/java/org/deanshin/jraphics/datamodel/Text.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/main/java/org/deanshin/jraphics/internal/AbsoluteBoxRenderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/main/java/org/deanshin/jraphics/internal/AbsoluteBoxRenderer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/main/java/org/deanshin/jraphics/internal/RelativeBoxRenderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/main/java/org/deanshin/jraphics/internal/RelativeBoxRenderer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/main/java/org/deanshin/jraphics/internal/RenderingUtilService.java" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/main/java/org/deanshin/jraphics/internal/RenderingUtilService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/main/java/org/deanshin/jraphics/internal/RenderingUtilServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/main/java/org/deanshin/jraphics/internal/RenderingUtilServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/src/main/java/org/deanshin/jraphics/internal/TextRenderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/main/java/org/deanshin/jraphics/internal/TextRenderer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/main/java/org/deanshin/jraphics/internal/WindowRendererImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/main/java/org/deanshin/jraphics/internal/WindowRendererImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -143,7 +137,7 @@
       <workItem from="1696213951127" duration="3822000" />
       <workItem from="1696281437096" duration="10292000" />
       <workItem from="1696882493699" duration="8538000" />
-      <workItem from="1697394965601" duration="11354000" />
+      <workItem from="1697394965601" duration="16542000" />
     </task>
     <servers />
   </component>
