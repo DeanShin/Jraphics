@@ -47,21 +47,6 @@ class TextRenderer implements Renderer<Text> {
 		}
 	}
 
-	private int getLineX(Text element, FinalizedBox finalizedBox, int lineWidth) {
-		return switch (element.getAlign()) {
-			case LEFT -> finalizedBox.x().getPixels();
-			case RIGHT -> finalizedBox.x()
-				.plus(finalizedBox.width())
-				.minus(Size.pixel(lineWidth))
-				.getPixels();
-			case CENTER -> finalizedBox.x()
-				.plus(finalizedBox.width())
-				.minus(Size.pixel(lineWidth))
-				.times(0.5)
-				.getPixels();
-		};
-	}
-
 	private List<String> breakIntoLines(String label, int maxWidth, FontMetrics fontMetrics) {
 		String[] initialLines = label.split(LINE_BREAK);
 		return Arrays.stream(initialLines)
@@ -100,5 +85,21 @@ class TextRenderer implements Renderer<Text> {
 			Stream.of(String.join(DELIMITER, words.subList(wordIdx, newWordIdx))),
 			packWordsIntoLine(maxWidth, fontMetrics, words, newWordIdx)
 		);
+	}
+
+	private int getLineX(Text element, FinalizedBox finalizedBox, int lineWidth) {
+		return switch (element.getAlign()) {
+			case LEFT -> finalizedBox.x().getPixels();
+			case CENTER -> finalizedBox.x()
+				.plus(finalizedBox.width()
+					.minus(Size.pixel(lineWidth))
+					.times(0.5)
+				)
+				.getPixels();
+			case RIGHT -> finalizedBox.x()
+				.plus(finalizedBox.width())
+				.minus(Size.pixel(lineWidth))
+				.getPixels();
+		};
 	}
 }

@@ -24,18 +24,12 @@ public class Main {
 					)
 					.border(border -> border.all(side -> side.size(Size.pixel(10)).color(Color.WHITE)))
 					.build(),
-				AbsoluteBox.builder()
-					.box(box -> box.dimensions(dim -> dim.width(Size.pixel(100)).height(Size.pixel(100))))
-					.x(Size.max(Size.percentage(50), Size.min(Size.pixel(250), Size.percentage(60), Size.pixel(200))))
-					.y(Size.percentage(40))
-					.border(border -> border.all(side -> side.size(Size.pixel(10)).color(Color.BLACK)))
-					.build(),
 				RelativeBox.builder()
 					.box(box -> box.dimensions(dim -> dim.width(Size.pixel(500)).height(Size.pixel(100)))
 						.color(Color.BLACK))
 					.build(),
 				RelativeBox.builder()
-					.padding(padding -> padding.all(Size.pixel(20)))
+					.padding(padding -> padding.all(Size.pixel(50)))
 					.box(box -> box.dimensions(dim -> dim.width(Size.pixel(400)).height(Size.pixel(100)))
 						.color(Color.WHITE)
 						.child(
@@ -47,6 +41,12 @@ public class Main {
 								.build()
 						)
 					)
+					.build(),
+				AbsoluteBox.builder()
+					.box(box -> box.dimensions(dim -> dim.width(Size.pixel(100)).height(Size.pixel(100))))
+					.x(Size.max(Size.percentage(50), Size.min(Size.pixel(250), Size.percentage(60), Size.pixel(200))))
+					.y(Size.percentage(40))
+					.border(border -> border.all(side -> side.size(Size.pixel(10)).color(Color.BLACK)))
 					.build(),
 				RelativeBox.builder()
 					.box(box -> box.dimensions(dim -> dim.width(Size.pixel(400)).height(Size.pixel(100)))

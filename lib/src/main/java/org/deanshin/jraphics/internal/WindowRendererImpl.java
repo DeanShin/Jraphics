@@ -34,16 +34,12 @@ public class WindowRendererImpl implements WindowRenderer {
 	}
 
 	private void renderChildren(Graphics2D graphics, FinalizedBox parentBox, List<Element> children) {
-		// AbsoluteBoxes are rendered in a separate pass, since they are all independently positioned from each other.
-		for (Element child : children) {
-			if (child instanceof AbsoluteBox) {
-				renderElement(graphics, child, parentBox, null);
-			}
-		}
-
 		FinalizedBox prev = null;
 		for (Element child : children) {
-			if (!(child instanceof AbsoluteBox)) {
+			if (child instanceof AbsoluteBox) {
+				// AbsoluteBoxes are rendered outside the normal element flow.
+				renderElement(graphics, child, parentBox, null);
+			} else {
 				prev = renderElement(graphics, child, parentBox, prev);
 			}
 		}
