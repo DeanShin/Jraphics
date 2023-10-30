@@ -13,16 +13,18 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
 
-public class Window {
+public class Window extends Component<Window.Properties, Window.State> {
 	private final Frame frame;
 	private final List<Consumer<Window>> windowDisposedConsumers;
 	private final WindowRenderer windowRenderer;
 	private Dimensions<Size.Pixel, Size.Pixel> dimensions;
-	private WindowState state;
+	private WindowActivationState windowActivationState;
 	private List<Element> children;
 
 	public Window(Dimensions<Size.Pixel, Size.Pixel> dimensions) {
+		super(new Properties());
 		this.dimensions = dimensions;
+
 		Window thisWindow = this;
 		this.frame = new JFrame() {
 			@Override
@@ -30,10 +32,12 @@ public class Window {
 				windowRenderer.render(thisWindow, (Graphics2D) g);
 			}
 		};
+
 		this.windowDisposedConsumers = new ArrayList<>();
-		this.state = WindowState.INACTIVE;
+		this.windowActivationState = WindowActivationState.INACTIVE;
 		this.children = new ArrayList<>();
 		this.windowRenderer = new WindowRendererImpl();
+		this.setOnComponentStateChanged((component) -> frame.repaint());
 	}
 
 	public Window(Size.Pixel width, Size.Pixel height) {
@@ -78,14 +82,22 @@ public class Window {
 
 	public Window children(List<Element> children) {
 		this.children = children;
+		this.children.stream()
+			.filter(Component.class::isInstance)
+			.map(Component.class::cast)
+			.forEach(this::addComponent);
 		return this;
 	}
 
-	protected void activate() {
-		if (this.state == WindowState.ACTIVATING || this.state == WindowState.ACTIVE) {
+	public List<Element> getChildren() {
+		return children;
+	}
+
+	void activate() {
+		if (this.windowActivationState == WindowActivationState.ACTIVATING || this.windowActivationState == WindowActivationState.ACTIVE) {
 			return;
 		}
-		this.state = WindowState.ACTIVATING;
+		this.windowActivationState = WindowActivationState.ACTIVATING;
 		this.frame.setSize(dimensions.getWidth().getPixels(), dimensions.getHeight().getPixels());
 		this.frame.setVisible(true);
 		this.frame.addWindowListener(new WindowAdapter() {
@@ -94,27 +106,34 @@ public class Window {
 				deactivate();
 			}
 		});
-		this.state = WindowState.ACTIVE;
+		this.windowActivationState = WindowActivationState.ACTIVE;
 	}
 
-	protected void deactivate() {
-		if (this.state == WindowState.DEACTIVATING || this.state == WindowState.INACTIVE) {
+	void deactivate() {
+		if (this.windowActivationState == WindowActivationState.DEACTIVATING || this.windowActivationState == WindowActivationState.INACTIVE) {
 			return;
 		}
-		this.state = WindowState.DEACTIVATING;
+		this.windowActivationState = WindowActivationState.DEACTIVATING;
 		this.frame.dispose();
 		windowDisposedConsumers.forEach(windowDisposedConsumer -> windowDisposedConsumer.accept(this));
-		this.state = WindowState.INACTIVE;
+		this.windowActivationState = WindowActivationState.INACTIVE;
 	}
 
-	public List<Element> getChildren() {
-		return children;
+	@Override
+	protected void initializeState() {
+		this.state = new State();
 	}
 
-	private enum WindowState {
+	private enum WindowActivationState {
 		DEACTIVATING,
 		INACTIVE,
 		ACTIVATING,
 		ACTIVE,
+	}
+
+	public record Properties() {
+	}
+
+	public record State() {
 	}
 }

@@ -10,7 +10,6 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class WindowRendererImpl implements WindowRenderer {
-	@SuppressWarnings("rawtypes")
 	private final Map<Class<? extends Element>, Renderer<? extends Element>> renderers;
 
 	public WindowRendererImpl() {
@@ -30,11 +29,11 @@ public class WindowRendererImpl implements WindowRenderer {
 			window.getDimensions().getHeight(),
 			null
 		);
-		renderChildren(graphics, finalizedWindowBox, window.getChildren());
+		renderChildren(graphics, finalizedWindowBox, window.getChildren(), null);
 	}
 
-	private void renderChildren(Graphics2D graphics, FinalizedBox parentBox, List<Element> children) {
-		FinalizedBox prev = null;
+	private FinalizedBox renderChildren(Graphics2D graphics, FinalizedBox parentBox, List<Element> children, @Nullable FinalizedBox previousBox) {
+		FinalizedBox prev = previousBox;
 		for (Element child : children) {
 			if (child instanceof AbsoluteBox) {
 				// AbsoluteBoxes are rendered outside the normal element flow.
@@ -43,6 +42,7 @@ public class WindowRendererImpl implements WindowRenderer {
 				prev = renderElement(graphics, child, parentBox, prev);
 			}
 		}
+		return prev;
 	}
 
 	private <T extends Element> FinalizedBox renderElement(
@@ -51,12 +51,16 @@ public class WindowRendererImpl implements WindowRenderer {
 		FinalizedBox parentBox,
 		@Nullable FinalizedBox previousBox
 	) {
+		if (element instanceof Component<?, ?> component) {
+			return renderChildren(graphics, parentBox, component.getChildren(), previousBox);
+		}
+
 		@SuppressWarnings("unchecked") Renderer<T> renderer = (Renderer<T>) renderers.get(element.getClass());
 		FinalizedBox finalizedBox = renderer.getBounds(element, graphics, parentBox, previousBox);
 		renderer.render(element, graphics, finalizedBox, parentBox);
 
 		if (element instanceof HasChildren hasChildren) {
-			renderChildren(graphics, finalizedBox, hasChildren.getChildren());
+			renderChildren(graphics, finalizedBox, hasChildren.getChildren(), null);
 		}
 
 		return finalizedBox;

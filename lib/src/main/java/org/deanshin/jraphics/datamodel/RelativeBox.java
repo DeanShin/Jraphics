@@ -1,5 +1,7 @@
 package org.deanshin.jraphics.datamodel;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.function.Function;
 
@@ -9,11 +11,14 @@ public class RelativeBox implements Element.HasSiblings, HasPadding, HasMargin, 
 	private final Border border;
 	private final Offset margin;
 
-	public RelativeBox(Box box, Offset padding, Border border, Offset margin) {
+	private final List<Element> children;
+
+	public RelativeBox(Box box, Offset padding, Border border, Offset margin, List<Element> children) {
 		this.box = box;
 		this.padding = padding;
 		this.border = border;
 		this.margin = margin;
+		this.children = children;
 	}
 
 	public static Builder builder() {
@@ -36,12 +41,14 @@ public class RelativeBox implements Element.HasSiblings, HasPadding, HasMargin, 
 		return margin;
 	}
 
+
 	@Override
 	public List<Element> getChildren() {
-		return box.getChildren();
+		return children;
 	}
 
 	public static class Builder {
+		private final ArrayList<Element> children;
 		private Box.Builder box;
 		private Offset.Builder padding;
 		private Border.Builder border;
@@ -52,6 +59,7 @@ public class RelativeBox implements Element.HasSiblings, HasPadding, HasMargin, 
 			this.padding = Offset.builder();
 			this.border = Border.builder();
 			this.margin = Offset.builder();
+			this.children = new ArrayList<>();
 		}
 
 		public Builder box(Function<Box.Builder, Box.Builder> buildOperation) {
@@ -74,8 +82,19 @@ public class RelativeBox implements Element.HasSiblings, HasPadding, HasMargin, 
 			return this;
 		}
 
+		public Builder children(Element.HasSiblings... children) {
+			this.children.addAll(Arrays.stream(children).toList());
+			return this;
+		}
+
+		public Builder child(Element.HasNoSiblings child) {
+			this.children.clear();
+			this.children.add(child);
+			return this;
+		}
+
 		public RelativeBox build() {
-			return new RelativeBox(box.build(), padding.build(), border.build(), margin.build());
+			return new RelativeBox(box.build(), padding.build(), border.build(), margin.build(), children);
 		}
 	}
 }

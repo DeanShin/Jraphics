@@ -1,19 +1,14 @@
 package org.deanshin.jraphics.datamodel;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 import java.util.function.Function;
 
 public class Box {
 	private final Dimensions<?, ?> dimensions;
 	private final Color color;
-	private final List<Element> children;
 
-	private Box(Dimensions<?, ?> dimensions, Color color, List<Element> children) {
+	private Box(Dimensions<?, ?> dimensions, Color color) {
 		this.dimensions = dimensions;
 		this.color = color;
-		this.children = children;
 	}
 
 	public static Builder builder() {
@@ -28,19 +23,13 @@ public class Box {
 		return color;
 	}
 
-	public List<Element> getChildren() {
-		return children;
-	}
-
 	public static class Builder {
-		private final ArrayList<Element> children;
 		private Dimensions.Builder<?, ?> dimensions;
 		private Color color;
 
 		private Builder() {
 			this.dimensions = Dimensions.builder();
 			this.color = Color.WHITE;
-			this.children = new ArrayList<>();
 		}
 
 		public Builder dimensions(Function<Dimensions.Builder<?, ?>, Dimensions.Builder<?, ?>> buildOperation) {
@@ -53,19 +42,9 @@ public class Box {
 			return this;
 		}
 
-		public Builder children(Element.HasSiblings... children) {
-			this.children.addAll(Arrays.stream(children).toList());
-			return this;
-		}
-
-		public Builder child(Element.HasNoSiblings child) {
-			this.children.clear();
-			this.children.add(child);
-			return this;
-		}
 
 		public Box build() {
-			return new Box(dimensions.build(), color, children);
+			return new Box(dimensions.build(), color);
 		}
 	}
 }
