@@ -32,6 +32,7 @@ public class TestComponent extends Component<TestComponent.Properties, TestCompo
 							.build())
 						.build()
 				)
+				.border(border -> border.all(builder -> builder.size(Size.pixel(1)).color(Color.WHITE)))
 				.build()
 		);
 	}

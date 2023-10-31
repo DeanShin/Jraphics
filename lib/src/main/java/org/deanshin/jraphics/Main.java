@@ -1,5 +1,6 @@
 package org.deanshin.jraphics;
 
+import org.deanshin.jraphics.datamodel.AbsoluteBox;
 import org.deanshin.jraphics.datamodel.Application;
 import org.deanshin.jraphics.datamodel.Size;
 import org.deanshin.jraphics.datamodel.Window;
@@ -66,9 +67,16 @@ public class Main {
 //						.color(Color.BLACK))
 //					.margin(margin -> margin.top(Size.pixel(100)).left(Size.pixel(50)))
 //					.build()
-				new TestComponent(new TestComponent.Properties("hello")),
-				new TestComponent(new TestComponent.Properties("world")),
-				new TestComponent(new TestComponent.Properties("test"))
+				AbsoluteBox.builder()
+					.x(Size.pixel(50))
+					.y(Size.pixel(50))
+					.children(
+						new TestParentComponent(new TestParentComponent.Properties("hello")),
+						new TestComponent(new TestComponent.Properties("world")),
+						new TestComponent(new TestComponent.Properties("test"))
+					)
+					.build()
+
 			));
 		application.addWindow(window);
 	}
