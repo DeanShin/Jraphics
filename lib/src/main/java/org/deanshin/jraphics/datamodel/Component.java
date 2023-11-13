@@ -1,30 +1,29 @@
 package org.deanshin.jraphics.datamodel;
 
-import java.util.function.Consumer;
+
+import org.deanshin.jraphics.internal.StateManager;
 
 public abstract class Component<PROPERTIES, STATE extends Record> implements Element.HasSiblings, HasChildren, Element {
+	private final String key;
 	protected PROPERTIES properties;
-	protected STATE state;
-	private Consumer<Component<?, ?>> onComponentStateChanged;
 
-	protected Component(PROPERTIES properties) {
+	protected Component(PROPERTIES properties, String key) {
 		this.properties = properties;
+		this.key = key;
+		if (StateManager.getInstance().getValue(key) == null) {
+			StateManager.getInstance().setValue(key, initializeState());
+		}
 	}
 
-	protected abstract void initializeState();
+	protected abstract STATE initializeState();
 
 	protected STATE updateState(STATE state) {
-		this.state = state;
-		onComponentStateChanged.accept(this);
-		return this.state;
+		StateManager.getInstance().setValue(key, state);
+		StateManager.getInstance().rerender();
+		return state;
 	}
 
-	public Component<?, ?> addComponent(Component<?, ?> component) {
-		component.setOnComponentStateChanged(onComponentStateChanged);
-		return component;
-	}
-
-	protected void setOnComponentStateChanged(Consumer<Component<?, ?>> onComponentStateChanged) {
-		this.onComponentStateChanged = onComponentStateChanged;
+	protected STATE getState() {
+		return StateManager.getInstance().getValue(key);
 	}
 }

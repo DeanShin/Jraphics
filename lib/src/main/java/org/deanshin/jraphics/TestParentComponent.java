@@ -5,13 +5,13 @@ import org.deanshin.jraphics.datamodel.*;
 import java.util.List;
 
 public class TestParentComponent extends Component<TestParentComponent.Properties, TestParentComponent.State> {
-	public TestParentComponent(Properties properties) {
-		super(properties);
+	public TestParentComponent(Properties properties, String key) {
+		super(properties, key);
 	}
 
 	@Override
-	protected void initializeState() {
-		this.state = new State();
+	protected TestParentComponent.State initializeState() {
+		return new State();
 	}
 
 	@Override
@@ -22,8 +22,8 @@ public class TestParentComponent extends Component<TestParentComponent.Propertie
 					.color(Color.BLACK))
 				.padding(padding -> padding.all(Size.pixel(25)))
 				.children(
-					new TestComponent(new TestComponent.Properties(this.properties.text + " 1")),
-					new TestComponent(new TestComponent.Properties(this.properties.text + " 2"))
+					new TestComponent(new TestComponent.Properties(this.properties.text + " 1"), "comp1"),
+					new TestComponent(new TestComponent.Properties(this.properties.text + " 2"), "comp2")
 				)
 				.build()
 		);

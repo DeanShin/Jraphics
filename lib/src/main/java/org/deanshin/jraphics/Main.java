@@ -71,9 +71,9 @@ public class Main {
 					.x(Size.pixel(50))
 					.y(Size.pixel(50))
 					.children(
-						new TestParentComponent(new TestParentComponent.Properties("hello")),
-						new TestComponent(new TestComponent.Properties("world")),
-						new TestComponent(new TestComponent.Properties("test"))
+//						new TestParentComponent(new TestParentComponent.Properties("hello"), "topParent1"),
+						new TestComponent(new TestComponent.Properties("world"), "topComp1"),
+						new TestComponent(new TestComponent.Properties("test"), "topComp2")
 					)
 					.build()
 

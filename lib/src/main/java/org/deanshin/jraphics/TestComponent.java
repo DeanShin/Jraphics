@@ -6,20 +6,20 @@ import java.util.List;
 
 public class TestComponent extends Component<TestComponent.Properties, TestComponent.State> {
 
-	protected TestComponent(Properties properties) {
-		super(properties);
+	protected TestComponent(Properties properties, String key) {
+		super(properties, key);
 	}
 
 	@Override
-	protected void initializeState() {
-		this.state = new State();
+	protected State initializeState() {
+		return new State(0);
 	}
 
 	@Override
 	public List<Element> getChildren() {
 		return List.of(
 			RelativeBox.builder()
-				.box(box -> box.dimensions(d -> d.width(Size.pixel(100)).height(Size.pixel(100)))
+				.box(box -> box.dimensions(d -> d.width(Size.pixel(100)).height(Size.pixel(200)))
 					.color(Color.BLACK))
 				.children(
 					RelativeBox.builder()
@@ -31,6 +31,16 @@ public class TestComponent extends Component<TestComponent.Properties, TestCompo
 							.color(Color.BLACK)
 							.build())
 						.onClick(e -> System.out.println("Here " + properties.text))
+						.build(),
+					RelativeBox.builder()
+						.box(box -> box.dimensions(d -> d.width(Size.pixel(80)).height(Size.pixel(80)))
+							.color(Color.WHITE))
+						.margin(margin -> margin.all(Size.pixel(10)))
+						.child(Text.builder()
+							.text("Times clicked: " + getState().x)
+							.color(Color.BLACK)
+							.build())
+						.onClick(e -> updateState(new State(getState().x + 1)))
 						.build()
 				)
 				.border(border -> border.all(builder -> builder.size(Size.pixel(1)).color(Color.WHITE)))
@@ -42,7 +52,7 @@ public class TestComponent extends Component<TestComponent.Properties, TestCompo
 
 	}
 
-	public record State() {
+	public record State(int x) {
 
 	}
 }

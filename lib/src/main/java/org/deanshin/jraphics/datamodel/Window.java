@@ -1,5 +1,7 @@
 package org.deanshin.jraphics.datamodel;
 
+
+import org.deanshin.jraphics.internal.StateManager;
 import org.deanshin.jraphics.internal.WindowRenderer;
 import org.deanshin.jraphics.internal.WindowRendererImpl;
 
@@ -22,7 +24,7 @@ public class Window extends Component<Window.Properties, Window.State> {
 	private List<Element> children;
 
 	public Window(Dimensions<Size.Pixel, Size.Pixel> dimensions) {
-		super(new Properties());
+		super(new Properties(), "window");
 		this.dimensions = dimensions;
 
 		Window thisWindow = this;
@@ -37,7 +39,7 @@ public class Window extends Component<Window.Properties, Window.State> {
 		this.windowActivationState = WindowActivationState.INACTIVE;
 		this.children = new ArrayList<>();
 		this.windowRenderer = new WindowRendererImpl(this.frame);
-		this.setOnComponentStateChanged((component) -> frame.repaint());
+		StateManager.getInstance().setOnStateChanged(frame::repaint);
 	}
 
 	public Window(Size.Pixel width, Size.Pixel height) {
@@ -82,10 +84,6 @@ public class Window extends Component<Window.Properties, Window.State> {
 
 	public Window children(List<Element> children) {
 		this.children = children;
-		this.children.stream()
-			.filter(Component.class::isInstance)
-			.map(Component.class::cast)
-			.forEach(this::addComponent);
 		return this;
 	}
 
@@ -120,8 +118,8 @@ public class Window extends Component<Window.Properties, Window.State> {
 	}
 
 	@Override
-	protected void initializeState() {
-		this.state = new State();
+	protected State initializeState() {
+		return new State();
 	}
 
 	private enum WindowActivationState {
