@@ -30,6 +30,7 @@ public class TestComponent extends Component<TestComponent.Properties, TestCompo
 							.text(this.properties.text)
 							.color(Color.BLACK)
 							.build())
+						.onClick(e -> System.out.println("Here " + properties.text))
 						.build()
 				)
 				.border(border -> border.all(builder -> builder.size(Size.pixel(1)).color(Color.WHITE)))

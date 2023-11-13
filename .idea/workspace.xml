@@ -8,10 +8,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="570ff112-6e44-4de5-8fdb-ca139643f457" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/lib/src/main/java/org/deanshin/jraphics/TestParentComponent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/src/main/java/org/deanshin/jraphics/datamodel/Clickable.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/src/main/java/org/deanshin/jraphics/internal/MouseCollisionHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/main/java/org/deanshin/jraphics/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/main/java/org/deanshin/jraphics/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/src/main/java/org/deanshin/jraphics/TestComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/main/java/org/deanshin/jraphics/TestComponent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/main/java/org/deanshin/jraphics/datamodel/AbsoluteBox.java" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/main/java/org/deanshin/jraphics/datamodel/AbsoluteBox.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/main/java/org/deanshin/jraphics/datamodel/RelativeBox.java" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/main/java/org/deanshin/jraphics/datamodel/RelativeBox.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/main/java/org/deanshin/jraphics/datamodel/Window.java" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/main/java/org/deanshin/jraphics/datamodel/Window.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/main/java/org/deanshin/jraphics/internal/WindowRendererImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/main/java/org/deanshin/jraphics/internal/WindowRendererImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,8 +33,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Interface" />
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -143,7 +147,8 @@
       <workItem from="1698023823111" duration="4933000" />
       <workItem from="1698282881498" duration="2002000" />
       <workItem from="1698688998717" duration="866000" />
-      <workItem from="1698695412312" duration="5858000" />
+      <workItem from="1698695412312" duration="9252000" />
+      <workItem from="1699822680358" duration="6387000" />
     </task>
     <servers />
   </component>

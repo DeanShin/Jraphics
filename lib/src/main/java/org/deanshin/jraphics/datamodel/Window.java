@@ -36,7 +36,7 @@ public class Window extends Component<Window.Properties, Window.State> {
 		this.windowDisposedConsumers = new ArrayList<>();
 		this.windowActivationState = WindowActivationState.INACTIVE;
 		this.children = new ArrayList<>();
-		this.windowRenderer = new WindowRendererImpl();
+		this.windowRenderer = new WindowRendererImpl(this.frame);
 		this.setOnComponentStateChanged((component) -> frame.repaint());
 	}
 
