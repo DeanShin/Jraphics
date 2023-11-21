@@ -8,24 +8,26 @@ import java.util.Optional;
 import java.util.function.Consumer;
 import java.util.function.Function;
 
-public class AbsoluteBox implements Element.HasSiblings, HasPadding, HasChildren, HasBorder, HasBox, Clickable {
+public class AbsoluteBox implements Element.HasSiblings, HasPadding, HasChildren, HasFlow, HasBorder, HasBox, Clickable {
 	private final Box box;
 	private final Border border;
 	private final Size x;
 	private final Size y;
 	private final Offset padding;
 	private final List<Element> children;
+	private final ElementFlow flow;
 	private final Consumer<MouseEvent> onClick;
 	private final Consumer<MouseEvent> onMouseEnter;
 	private final Consumer<MouseEvent> onMouseExit;
 
-	private AbsoluteBox(Box box, Border border, Size x, Size y, Offset padding, List<Element> children, Consumer<MouseEvent> onClick, Consumer<MouseEvent> onMouseEnter, Consumer<MouseEvent> onMouseExit) {
+	private AbsoluteBox(Box box, Border border, Size x, Size y, Offset padding, List<Element> children, ElementFlow flow, Consumer<MouseEvent> onClick, Consumer<MouseEvent> onMouseEnter, Consumer<MouseEvent> onMouseExit) {
 		this.box = box;
 		this.border = border;
 		this.x = x;
 		this.y = y;
 		this.padding = padding;
 		this.children = children;
+		this.flow = flow;
 		this.onClick = onClick;
 		this.onMouseEnter = onMouseEnter;
 		this.onMouseExit = onMouseExit;
@@ -57,6 +59,11 @@ public class AbsoluteBox implements Element.HasSiblings, HasPadding, HasChildren
 	}
 
 	@Override
+	public ElementFlow getFlow() {
+		return flow;
+	}
+
+	@Override
 	public Offset getPadding() {
 		return padding;
 	}
@@ -83,6 +90,7 @@ public class AbsoluteBox implements Element.HasSiblings, HasPadding, HasChildren
 		private Size x;
 		private Size y;
 		private Offset.Builder padding;
+		private ElementFlow flow;
 		private Consumer<MouseEvent> onClick;
 		private Consumer<MouseEvent> onMouseEnter;
 		private Consumer<MouseEvent> onMouseExit;
@@ -94,6 +102,7 @@ public class AbsoluteBox implements Element.HasSiblings, HasPadding, HasChildren
 			this.y = Size.ZERO;
 			this.padding = Offset.builder();
 			this.children = new ArrayList<>();
+			this.flow = ElementFlow.VERTICAL;
 		}
 
 		public Builder box(Function<Box.Builder, Box.Builder> buildOperation) {
@@ -132,6 +141,11 @@ public class AbsoluteBox implements Element.HasSiblings, HasPadding, HasChildren
 			return this;
 		}
 
+		public Builder flow(ElementFlow flow) {
+			this.flow = flow;
+			return this;
+		}
+
 		public Builder onClick(Consumer<MouseEvent> onClick) {
 			this.onClick = onClick;
 			return this;
@@ -147,9 +161,8 @@ public class AbsoluteBox implements Element.HasSiblings, HasPadding, HasChildren
 			return this;
 		}
 
-
 		public AbsoluteBox build() {
-			return new AbsoluteBox(box.build(), border.build(), x, y, padding.build(), children, onClick, onMouseEnter, onMouseExit);
+			return new AbsoluteBox(box.build(), border.build(), x, y, padding.build(), children, flow, onClick, onMouseEnter, onMouseExit);
 		}
 	}
 }

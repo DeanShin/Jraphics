@@ -1,9 +1,6 @@
 package org.deanshin.jraphics;
 
-import org.deanshin.jraphics.datamodel.AbsoluteBox;
-import org.deanshin.jraphics.datamodel.Application;
-import org.deanshin.jraphics.datamodel.Size;
-import org.deanshin.jraphics.datamodel.Window;
+import org.deanshin.jraphics.datamodel.*;
 
 import java.util.List;
 
@@ -70,6 +67,7 @@ public class Main {
 				AbsoluteBox.builder()
 					.x(Size.pixel(50))
 					.y(Size.pixel(50))
+					.flow(ElementFlow.HORIZONTAL)
 					.children(
 //						new TestParentComponent(new TestParentComponent.Properties("hello"), "topParent1"),
 						new TestComponent(new TestComponent.Properties("world"), "topComp1"),

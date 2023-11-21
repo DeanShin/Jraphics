@@ -8,22 +8,24 @@ import java.util.Optional;
 import java.util.function.Consumer;
 import java.util.function.Function;
 
-public class RelativeBox implements Element.HasSiblings, HasPadding, HasMargin, HasChildren, HasBorder, HasBox, Clickable {
+public class RelativeBox implements Element.HasSiblings, HasPadding, HasMargin, HasChildren, HasFlow, HasBorder, HasBox, Clickable {
 	private final Box box;
 	private final Offset padding;
 	private final Border border;
 	private final Offset margin;
 	private final List<Element> children;
+	private final ElementFlow flow;
 	private final Consumer<MouseEvent> onClick;
 	private final Consumer<MouseEvent> onMouseEnter;
 	private final Consumer<MouseEvent> onMouseExit;
 
-	public RelativeBox(Box box, Offset padding, Border border, Offset margin, List<Element> children, Consumer<MouseEvent> onClick, Consumer<MouseEvent> onMouseEnter, Consumer<MouseEvent> onMouseExit) {
+	public RelativeBox(Box box, Offset padding, Border border, Offset margin, List<Element> children, ElementFlow flow, Consumer<MouseEvent> onClick, Consumer<MouseEvent> onMouseEnter, Consumer<MouseEvent> onMouseExit) {
 		this.box = box;
 		this.padding = padding;
 		this.border = border;
 		this.margin = margin;
 		this.children = children;
+		this.flow = flow;
 		this.onClick = onClick;
 		this.onMouseEnter = onMouseEnter;
 		this.onMouseExit = onMouseExit;
@@ -48,10 +50,15 @@ public class RelativeBox implements Element.HasSiblings, HasPadding, HasMargin, 
 	public Offset getMargin() {
 		return margin;
 	}
-	
+
 	@Override
 	public List<Element> getChildren() {
 		return children;
+	}
+
+	@Override
+	public ElementFlow getFlow() {
+		return flow;
 	}
 
 	@Override
@@ -75,6 +82,7 @@ public class RelativeBox implements Element.HasSiblings, HasPadding, HasMargin, 
 		private Offset.Builder padding;
 		private Border.Builder border;
 		private Offset.Builder margin;
+		private ElementFlow flow;
 		private Consumer<MouseEvent> onClick;
 		private Consumer<MouseEvent> onMouseEnter;
 		private Consumer<MouseEvent> onMouseExit;
@@ -85,6 +93,7 @@ public class RelativeBox implements Element.HasSiblings, HasPadding, HasMargin, 
 			this.border = Border.builder();
 			this.margin = Offset.builder();
 			this.children = new ArrayList<>();
+			this.flow = ElementFlow.VERTICAL;
 		}
 
 		public Builder box(Function<Box.Builder, Box.Builder> buildOperation) {
@@ -118,6 +127,11 @@ public class RelativeBox implements Element.HasSiblings, HasPadding, HasMargin, 
 			return this;
 		}
 
+		public Builder flow(ElementFlow flow) {
+			this.flow = flow;
+			return this;
+		}
+
 		public Builder onClick(Consumer<MouseEvent> onClick) {
 			this.onClick = onClick;
 			return this;
@@ -134,7 +148,7 @@ public class RelativeBox implements Element.HasSiblings, HasPadding, HasMargin, 
 		}
 
 		public RelativeBox build() {
-			return new RelativeBox(box.build(), padding.build(), border.build(), margin.build(), children, onClick, onMouseEnter, onMouseExit);
+			return new RelativeBox(box.build(), padding.build(), border.build(), margin.build(), children, flow, onClick, onMouseEnter, onMouseExit);
 		}
 	}
 }

@@ -1,6 +1,7 @@
 package org.deanshin.jraphics.internal;
 
 import org.deanshin.jraphics.datamodel.AbsoluteBox;
+import org.deanshin.jraphics.datamodel.ElementFlow;
 
 import javax.annotation.Nullable;
 import java.awt.Graphics2D;
@@ -18,7 +19,7 @@ class AbsoluteBoxRenderer implements Renderer<AbsoluteBox> {
 	}
 
 	@Override
-	public FinalizedBox getBounds(AbsoluteBox element, Graphics2D graphics2D, FinalizedBox parentBox, @Nullable FinalizedBox previousSiblingBox) {
+	public FinalizedBox getBounds(AbsoluteBox element, Graphics2D graphics2D, FinalizedBox parentBox, @Nullable FinalizedBox previousSiblingBox, ElementFlow flow) {
 		return new FinalizedBox(
 			parentBox.x().plus(renderingUtilService.sizeInPixels(element.getX(), parentBox.width())),
 			parentBox.y().plus(renderingUtilService.sizeInPixels(element.getY(), parentBox.height())),

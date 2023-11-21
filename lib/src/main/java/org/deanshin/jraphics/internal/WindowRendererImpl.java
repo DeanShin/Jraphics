@@ -34,17 +34,17 @@ public class WindowRendererImpl implements WindowRenderer {
 			null
 		);
 		mouseCollisionHandler.reset();
-		renderChildren(graphics, finalizedWindowBox, window.getChildren(), null);
+		renderChildren(graphics, finalizedWindowBox, window.getChildren(), ElementFlow.VERTICAL, null);
 	}
 
-	private FinalizedBox renderChildren(Graphics2D graphics, FinalizedBox parentBox, List<Element> children, @Nullable FinalizedBox previousBox) {
+	private FinalizedBox renderChildren(Graphics2D graphics, FinalizedBox parentBox, List<Element> children, ElementFlow flow, @Nullable FinalizedBox previousBox) {
 		FinalizedBox prev = previousBox;
 		for (Element child : children) {
 			if (child instanceof AbsoluteBox) {
 				// AbsoluteBoxes are rendered outside the normal element flow.
-				renderElement(graphics, child, parentBox, null);
+				renderElement(graphics, child, parentBox, flow, null);
 			} else {
-				prev = renderElement(graphics, child, parentBox, prev);
+				prev = renderElement(graphics, child, parentBox, flow, prev);
 			}
 		}
 		return prev;
@@ -54,18 +54,19 @@ public class WindowRendererImpl implements WindowRenderer {
 		Graphics2D graphics,
 		T element,
 		FinalizedBox parentBox,
+		ElementFlow flow,
 		@Nullable FinalizedBox previousBox
 	) {
 		if (element instanceof Component<?, ?> component) {
-			return renderChildren(graphics, parentBox, component.getChildren(), previousBox);
+			return renderChildren(graphics, parentBox, component.getChildren(), flow, previousBox);
 		}
 
 		@SuppressWarnings("unchecked") Renderer<T> renderer = (Renderer<T>) renderers.get(element.getClass());
-		FinalizedBox finalizedBox = renderer.getBounds(element, graphics, parentBox, previousBox);
+		FinalizedBox finalizedBox = renderer.getBounds(element, graphics, parentBox, previousBox, flow);
 		renderer.render(element, graphics, finalizedBox, parentBox);
 
 		if (element instanceof HasChildren hasChildren) {
-			renderChildren(graphics, finalizedBox, hasChildren.getChildren(), null);
+			renderChildren(graphics, finalizedBox, hasChildren.getChildren(), element instanceof HasFlow hasFlow ? hasFlow.getFlow() : flow, null);
 		}
 
 		if (element instanceof Clickable clickable && (

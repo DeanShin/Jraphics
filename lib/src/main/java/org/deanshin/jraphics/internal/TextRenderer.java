@@ -1,5 +1,6 @@
 package org.deanshin.jraphics.internal;
 
+import org.deanshin.jraphics.datamodel.ElementFlow;
 import org.deanshin.jraphics.datamodel.Size;
 import org.deanshin.jraphics.datamodel.Text;
 
@@ -25,7 +26,7 @@ class TextRenderer implements Renderer<Text> {
 	}
 
 	@Override
-	public FinalizedBox getBounds(Text element, Graphics2D graphics2D, FinalizedBox parentBox, @Nullable FinalizedBox previousSiblingBox) {
+	public FinalizedBox getBounds(Text element, Graphics2D graphics2D, FinalizedBox parentBox, @Nullable FinalizedBox previousSiblingBox, ElementFlow flow) {
 		return renderingUtilService.contentBox(parentBox, parentBox, element);
 	}
 
