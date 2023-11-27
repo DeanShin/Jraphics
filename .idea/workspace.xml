@@ -8,17 +8,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="570ff112-6e44-4de5-8fdb-ca139643f457" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/lib/src/main/java/org/deanshin/jraphics/datamodel/ElementFlow.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/src/main/java/org/deanshin/jraphics/datamodel/HasFlow.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/src/main/java/org/deanshin/jraphics/example/ButtonComponent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/src/main/java/org/deanshin/jraphics/example/ClickCounterComponent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/src/main/java/org/deanshin/jraphics/example/Main.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/src/main/java/org/deanshin/jraphics/example/MainScreen.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/src/main/java/org/deanshin/jraphics/example/NextScreen.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/src/main/java/org/deanshin/jraphics/example/ScreenManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/main/java/org/deanshin/jraphics/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/main/java/org/deanshin/jraphics/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/main/java/org/deanshin/jraphics/datamodel/AbsoluteBox.java" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/main/java/org/deanshin/jraphics/datamodel/AbsoluteBox.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/main/java/org/deanshin/jraphics/datamodel/RelativeBox.java" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/main/java/org/deanshin/jraphics/datamodel/RelativeBox.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/main/java/org/deanshin/jraphics/internal/AbsoluteBoxRenderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/main/java/org/deanshin/jraphics/internal/AbsoluteBoxRenderer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/main/java/org/deanshin/jraphics/internal/RelativeBoxRenderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/main/java/org/deanshin/jraphics/internal/RelativeBoxRenderer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/main/java/org/deanshin/jraphics/internal/Renderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/main/java/org/deanshin/jraphics/internal/Renderer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/main/java/org/deanshin/jraphics/internal/TextRenderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/main/java/org/deanshin/jraphics/internal/TextRenderer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/main/java/org/deanshin/jraphics/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/main/java/org/deanshin/jraphics/TestComponent.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/main/java/org/deanshin/jraphics/TestParentComponent.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/src/main/java/org/deanshin/jraphics/internal/WindowRendererImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/main/java/org/deanshin/jraphics/internal/WindowRendererImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -47,9 +46,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Enum" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -120,14 +119,27 @@
       <recent name="$PROJECT_DIR$/lib" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.org.deanshin.jraphics.example.Main">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="ALTERNATIVE_JRE_PATH" value="corretto-19" />
       <option name="MAIN_CLASS_NAME" value="org.deanshin.jraphics.Main" />
       <module name="Jraphics.lib.main" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="org.deanshin.jraphics.*" />
+          <option name="PATTERN" value="org.deanshin.jraphics.example.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="org.deanshin.jraphics.example.Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.deanshin.jraphics.example.Main" />
+      <module name="Jraphics.lib.main" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.deanshin.jraphics.example.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -137,6 +149,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.org.deanshin.jraphics.example.Main" />
         <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
@@ -169,11 +182,23 @@
       <workItem from="1699913708136" duration="3077000" />
       <workItem from="1699916794499" duration="63000" />
       <workItem from="1699916864882" duration="248000" />
-      <workItem from="1700524884615" duration="2800000" />
+      <workItem from="1700524884615" duration="7058000" />
+      <workItem from="1701070254179" duration="1950000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/lib/src/main/java/org/deanshin/jraphics/internal/StateManager.java</url>
+          <line>45</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

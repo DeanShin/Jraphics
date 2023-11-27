@@ -26,6 +26,7 @@ public class WindowRendererImpl implements WindowRenderer {
 	}
 
 	public void render(Window window, Graphics2D graphics) {
+		graphics.clearRect(0, 0, window.getDimensions().getWidth().getPixels(), window.getDimensions().getHeight().getPixels());
 		FinalizedBox finalizedWindowBox = new FinalizedBox(
 			Size.ZERO,
 			Size.ZERO,
