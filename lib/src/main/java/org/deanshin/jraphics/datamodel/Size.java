@@ -38,18 +38,42 @@ public interface Size {
 		return new Fractional(numerator);
 	}
 
+	/**
+	 * Tell the system to choose the minimum size between the provided candidates.
+	 *
+	 * @param candidates the candidates
+	 * @return the size as a minimum between the provided candidates
+	 */
 	static Min min(List<Size> candidates) {
 		return new Min(candidates);
 	}
 
+	/**
+	 * Tell the system to choose the minimum size between the provided candidates.
+	 *
+	 * @param candidates the candidates
+	 * @return the size as a minimum between the provided candidates
+	 */
 	static Min min(Size... candidates) {
 		return new Min(Arrays.stream(candidates).toList());
 	}
 
+	/**
+	 * Tell the system to choose the maximum size between the provided candidates.
+	 *
+	 * @param candidates the candidates
+	 * @return the size as a maximum between the provided candidates
+	 */
 	static Max max(List<Size> candidates) {
 		return new Max(candidates);
 	}
 
+	/**
+	 * Tell the system to choose the maximum size between the provided candidates.
+	 *
+	 * @param candidates the candidates
+	 * @return the size as a maximum between the provided candidates
+	 */
 	static Max max(Size... candidates) {
 		return new Max(Arrays.stream(candidates).toList());
 	}

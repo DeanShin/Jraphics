@@ -15,6 +15,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
 
+/**
+ * Represents a single window in the application.
+ */
 public class Window extends Component<Window.Properties, Window.State> {
 	private final Frame frame;
 	private final List<Consumer<Window>> windowDisposedConsumers;
@@ -42,6 +45,9 @@ public class Window extends Component<Window.Properties, Window.State> {
 		StateManager.getInstance().setOnStateChanged(frame::repaint);
 	}
 
+	/**
+	 * Create a window with a specific width and height.
+	 */
 	public Window(Size.Pixel width, Size.Pixel height) {
 		this(Dimensions.builder().width(width).height(height).build());
 	}
@@ -82,6 +88,9 @@ public class Window extends Component<Window.Properties, Window.State> {
 		return this;
 	}
 
+	/**
+	 * Add children to the window.s
+	 */
 	public Window children(List<Element> children) {
 		this.children = children;
 		return this;

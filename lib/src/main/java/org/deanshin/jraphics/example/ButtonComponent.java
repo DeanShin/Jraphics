@@ -21,8 +21,8 @@ public class ButtonComponent extends Component<ButtonComponent.Properties, Butto
 	public List<Element> getChildren() {
 		return List.of(
 			RelativeBox.builder()
-				.box(box ->
-					box.dimensions(dimensions ->
+				.content(content ->
+					content.dimensions(dimensions ->
 							dimensions.width(Size.percentage(100)).height(Size.percentage(100)))
 						.color(Color.WHITE)
 				)

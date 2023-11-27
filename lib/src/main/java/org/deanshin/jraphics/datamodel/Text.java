@@ -2,6 +2,9 @@ package org.deanshin.jraphics.datamodel;
 
 import java.awt.Font;
 
+/**
+ * This Text class is used to render text in the application.
+ */
 public class Text implements Element.HasNoSiblings {
 	private static final Font DEFAULT_FONT = new Font("Arial", Font.PLAIN, 12);
 
@@ -19,6 +22,11 @@ public class Text implements Element.HasNoSiblings {
 		this.align = align;
 	}
 
+	/**
+	 * Create a new Text using the Builder design pattern.
+	 *
+	 * @return The builder for the Text.
+	 */
 	public static Builder builder() {
 		return new Builder();
 	}
@@ -64,31 +72,62 @@ public class Text implements Element.HasNoSiblings {
 			this.align = Align.LEFT;
 		}
 
+		/**
+		 * Specify the text that should be rendered
+		 *
+		 * @return the builder
+		 */
 		public Builder text(String text) {
 			this.text = text;
 			return this;
 		}
 
+		/**
+		 * Specify the color of the text
+		 *
+		 * @return the builder
+		 */
 		public Builder color(Color color) {
 			this.color = color;
 			return this;
 		}
 
+		/**
+		 * Specify the font of the text
+		 *
+		 * @return the builder
+		 */
 		public Builder font(Font font) {
 			this.font = font;
 			return this;
 		}
 
+		/**
+		 * Specify the line height of the text. If the text exceeds the bounds of its parent element,
+		 * the text will wrap automatically. The gap between the two lines will be this variable.
+		 *
+		 * @return the builder
+		 */
 		public Builder lineHeight(Size.Pixel lineHeight) {
 			this.lineHeight = lineHeight;
 			return this;
 		}
 
+		/**
+		 * Specify the horizontal alignment of the text in the parent element
+		 *
+		 * @return the builder
+		 */
 		public Builder align(Align align) {
 			this.align = align;
 			return this;
 		}
 
+		/**
+		 * Finalize construction of the Text
+		 *
+		 * @return the Text
+		 */
 		public Text build() {
 			return new Text(text, color, font, lineHeight, align);
 		}

@@ -10,6 +10,11 @@ public class Dimensions<WIDTH extends Size, HEIGHT extends Size> {
 		this.height = height;
 	}
 
+	/**
+	 * Create a new Dimensions using the Builder design pattern.
+	 *
+	 * @return The builder for the Dimensions.
+	 */
 	public static Builder<Size.Pixel, Size.Pixel> builder() {
 		return new Builder<>();
 	}
@@ -52,6 +57,11 @@ public class Dimensions<WIDTH extends Size, HEIGHT extends Size> {
 			return (Builder<WIDTH, NEW_HEIGHT>) this;
 		}
 
+		/**
+		 * Finalize construction of the Dimensions
+		 *
+		 * @return the Dimensions
+		 */
 		@SuppressWarnings("unchecked")
 		public Dimensions<WIDTH, HEIGHT> build() {
 			return new Dimensions<>((WIDTH) width, (HEIGHT) height);

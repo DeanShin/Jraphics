@@ -2,15 +2,23 @@ package org.deanshin.jraphics.datamodel;
 
 import java.util.function.Function;
 
-public class Box {
+/**
+ * The container for the content of the box.
+ */
+public class Content {
 	private final Dimensions<?, ?> dimensions;
 	private final Color color;
 
-	private Box(Dimensions<?, ?> dimensions, Color color) {
+	private Content(Dimensions<?, ?> dimensions, Color color) {
 		this.dimensions = dimensions;
 		this.color = color;
 	}
 
+	/**
+	 * Create a new Content using the Builder design pattern.
+	 *
+	 * @return The builder for the Content.
+	 */
 	public static Builder builder() {
 		return new Builder();
 	}
@@ -42,9 +50,13 @@ public class Box {
 			return this;
 		}
 
-
-		public Box build() {
-			return new Box(dimensions.build(), color);
+		/**
+		 * Finalize construction of the Content
+		 *
+		 * @return the Content
+		 */
+		public Content build() {
+			return new Content(dimensions.build(), color);
 		}
 	}
 }

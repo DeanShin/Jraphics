@@ -13,6 +13,11 @@ public class Offset {
 		this.bottom = bottom;
 	}
 
+	/**
+	 * Create a new Offset using the Builder design pattern.
+	 *
+	 * @return The builder for the Offset.
+	 */
 	public static Builder builder() {
 		return new Builder();
 	}
@@ -70,6 +75,11 @@ public class Offset {
 			return this.left(all).top(all).right(all).bottom(all);
 		}
 
+		/**
+		 * Finalize construction of the Offset
+		 *
+		 * @return the Offset
+		 */
 		public Offset build() {
 			return new Offset(this.left, this.top, this.right, this.bottom);
 		}

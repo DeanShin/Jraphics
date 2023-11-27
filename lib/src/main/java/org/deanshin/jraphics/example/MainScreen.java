@@ -20,13 +20,13 @@ public class MainScreen extends Component<MainScreen.Properties, MainScreen.Stat
 	public List<Element> getChildren() {
 		return List.of(
 			RelativeBox.builder()
-				.box(box -> box.color(Color.WHITE)
+				.content(box -> box.color(Color.WHITE)
 					.dimensions(dim -> dim.width(Size.percentage(100)).height(Size.pixel(50))))
 				.margin(margin -> margin.top(pixel(100)))
 				.child(Text.builder().text("Main Screen").align(Text.Align.CENTER).color(Color.BLACK).build())
 				.build(),
 			RelativeBox.builder()
-				.box(box -> box.color(Color.WHITE)
+				.content(box -> box.color(Color.WHITE)
 					.dimensions(dim -> dim.width(Size.percentage(50)).height(Size.pixel(50))))
 				.margin(margin -> margin.top(pixel(200)))
 				.children(new ButtonComponent(new ButtonComponent.Properties(

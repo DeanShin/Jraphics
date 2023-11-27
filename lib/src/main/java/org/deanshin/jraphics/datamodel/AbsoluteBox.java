@@ -8,8 +8,25 @@ import java.util.Optional;
 import java.util.function.Consumer;
 import java.util.function.Function;
 
-public class AbsoluteBox implements Element.HasSiblings, HasPadding, HasChildren, HasFlow, HasBorder, HasBox, Clickable {
-	private final Box box;
+/**
+ * The absolute box mimics elements in the CSS box model.
+ * <p>
+ * Each absolute box contains the main content box, the surrounding padding, and the border.
+ * </p>
+ * <p>
+ * The main content box (see the box field) is the container for the children of the absolute box. For example, if you
+ * have a Text element within the absolute box, the Text element's top left corner will be aligned with the top left of
+ * the content box.
+ * </p>
+ * <p>
+ * The padding acts as spacing between the content box and the edge of the element.
+ * </p>
+ * <p>
+ * The border surrounds the padding and serves to visually distinguish boxes from each other if necessary.
+ * </p>
+ */
+public class AbsoluteBox implements Element.HasSiblings, HasPadding, HasChildren, HasFlow, HasBorder, HasContent, Clickable {
+	private final Content content;
 	private final Border border;
 	private final Size x;
 	private final Size y;
@@ -20,8 +37,8 @@ public class AbsoluteBox implements Element.HasSiblings, HasPadding, HasChildren
 	private final Consumer<MouseEvent> onMouseEnter;
 	private final Consumer<MouseEvent> onMouseExit;
 
-	private AbsoluteBox(Box box, Border border, Size x, Size y, Offset padding, List<Element> children, ElementFlow flow, Consumer<MouseEvent> onClick, Consumer<MouseEvent> onMouseEnter, Consumer<MouseEvent> onMouseExit) {
-		this.box = box;
+	private AbsoluteBox(Content content, Border border, Size x, Size y, Offset padding, List<Element> children, ElementFlow flow, Consumer<MouseEvent> onClick, Consumer<MouseEvent> onMouseEnter, Consumer<MouseEvent> onMouseExit) {
+		this.content = content;
 		this.border = border;
 		this.x = x;
 		this.y = y;
@@ -33,12 +50,17 @@ public class AbsoluteBox implements Element.HasSiblings, HasPadding, HasChildren
 		this.onMouseExit = onMouseExit;
 	}
 
+	/**
+	 * Create a new AbsoluteBox using the Builder design pattern.
+	 *
+	 * @return The builder for the AbsoluteBox.
+	 */
 	public static Builder builder() {
 		return new Builder();
 	}
 
-	public Box getBox() {
-		return box;
+	public Content getContent() {
+		return content;
 	}
 
 	public Border getBorder() {
@@ -85,7 +107,7 @@ public class AbsoluteBox implements Element.HasSiblings, HasPadding, HasChildren
 
 	public static class Builder {
 		private final ArrayList<Element> children;
-		private Box.Builder box;
+		private Content.Builder content;
 		private Border.Builder border;
 		private Size x;
 		private Size y;
@@ -96,7 +118,7 @@ public class AbsoluteBox implements Element.HasSiblings, HasPadding, HasChildren
 		private Consumer<MouseEvent> onMouseExit;
 
 		private Builder() {
-			this.box = Box.builder();
+			this.content = Content.builder();
 			this.border = Border.builder();
 			this.x = Size.ZERO;
 			this.y = Size.ZERO;
@@ -105,64 +127,124 @@ public class AbsoluteBox implements Element.HasSiblings, HasPadding, HasChildren
 			this.flow = ElementFlow.VERTICAL;
 		}
 
-		public Builder box(Function<Box.Builder, Box.Builder> buildOperation) {
-			box = buildOperation.apply(box);
+		/**
+		 * Specify the main container for the content of the absolute box.
+		 *
+		 * @return The builder
+		 */
+		public Builder content(Function<Content.Builder, Content.Builder> buildOperation) {
+			content = buildOperation.apply(content);
 			return this;
 		}
 
+		/**
+		 * Specify the border of the absolute box. The border is wrapped around the padding of the box.
+		 *
+		 * @return The builder
+		 */
 		public Builder border(Function<Border.Builder, Border.Builder> buildOperation) {
 			border = buildOperation.apply(border);
 			return this;
 		}
 
+		/**
+		 * Specify the x position of the absolute box.
+		 *
+		 * @return The builder
+		 */
 		public Builder x(Size x) {
 			this.x = x;
 			return this;
 		}
 
+		/**
+		 * Specify the y position of the absolute box.
+		 *
+		 * @return The builder
+		 */
 		public Builder y(Size y) {
 			this.y = y;
 			return this;
 		}
 
+		/**
+		 * Specify the padding of the absolute box.
+		 *
+		 * @return The builder
+		 */
 		public Builder padding(Function<Offset.Builder, Offset.Builder> buildOperation) {
 			padding = buildOperation.apply(padding);
 			return this;
 		}
 
+		/**
+		 * Specify the children of the absolute box.
+		 *
+		 * @return The builder
+		 */
 		public Builder children(Element.HasSiblings... children) {
 			this.children.addAll(Arrays.stream(children).toList());
 			return this;
 		}
 
+		/**
+		 * Specify the child of the absolute box.
+		 *
+		 * @return The builder
+		 */
 		public Builder child(Element.HasNoSiblings child) {
 			this.children.clear();
 			this.children.add(child);
 			return this;
 		}
 
+		/**
+		 * Specify the direction that the child elements are laid out.
+		 *
+		 * @return The builder
+		 */
 		public Builder flow(ElementFlow flow) {
 			this.flow = flow;
 			return this;
 		}
 
+		/**
+		 * Add a consumer that is called when the absolute box is clicked
+		 *
+		 * @return The builder
+		 */
 		public Builder onClick(Consumer<MouseEvent> onClick) {
 			this.onClick = onClick;
 			return this;
 		}
 
+		/**
+		 * Add a consumer that is called when the mouse enters the bounds of the absolute box
+		 *
+		 * @return The builder
+		 */
 		public Builder onMouseEnter(Consumer<MouseEvent> onMouseEnter) {
 			this.onMouseEnter = onMouseEnter;
 			return this;
 		}
 
+		/**
+		 * Add a consumer that is called when the mouse exits the bounds of the absolute box
+		 *
+		 * @return The builder
+		 */
 		public Builder onMouseExit(Consumer<MouseEvent> onMouseExit) {
 			this.onMouseExit = onMouseExit;
 			return this;
 		}
 
+		/**
+		 * End construction of the AbsoluteBox.
+		 *
+		 * @return The absolute box
+		 */
 		public AbsoluteBox build() {
-			return new AbsoluteBox(box.build(), border.build(), x, y, padding.build(), children, flow, onClick, onMouseEnter, onMouseExit);
+			return new AbsoluteBox(content.build(), border.build(), x, y, padding.build(), children, flow, onClick, onMouseEnter, onMouseExit);
 		}
 	}
 }

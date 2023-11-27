@@ -42,8 +42,8 @@ class RenderingUtilServiceImpl implements RenderingUtilService {
 		);
 	}
 
-	public void renderBox(Graphics2D graphics, HasBox hasBox, FinalizedBox finalizedBox) {
-		graphics.setColor(hasBox.getBox().getColor().toAwtColor());
+	public void renderBox(Graphics2D graphics, HasContent hasContent, FinalizedBox finalizedBox) {
+		graphics.setColor(hasContent.getContent().getColor().toAwtColor());
 		graphics.fillRect(
 			finalizedBox.x().getPixels(),
 			finalizedBox.y().getPixels(),

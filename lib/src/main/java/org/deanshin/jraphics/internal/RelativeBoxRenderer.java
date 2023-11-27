@@ -27,8 +27,8 @@ class RelativeBoxRenderer implements Renderer<RelativeBox> {
 		return new FinalizedBox(
 			x,
 			y,
-			renderingUtilService.sizeInPixels(element.getBox().getDimensions().getWidth(), parentBox.width()),
-			renderingUtilService.sizeInPixels(element.getBox().getDimensions().getHeight(), parentBox.height()),
+			renderingUtilService.sizeInPixels(element.getContent().getDimensions().getWidth(), parentBox.width()),
+			renderingUtilService.sizeInPixels(element.getContent().getDimensions().getHeight(), parentBox.height()),
 			element
 		);
 	}

@@ -4,6 +4,9 @@ import java.awt.event.MouseEvent;
 import java.util.Optional;
 import java.util.function.Consumer;
 
+/**
+ * An element that can be clicked by the user
+ */
 public interface Clickable {
 	Optional<Consumer<MouseEvent>> onClick();
 

@@ -18,8 +18,8 @@ public class ClickCounterComponent extends Component<ClickCounterComponent.Prope
 	public List<Element> getChildren() {
 		return List.of(
 			RelativeBox.builder()
-				.box(box ->
-					box.dimensions(dim -> dim.width(Size.percentage(100)).height(Size.percentage(100)))
+				.content(content ->
+					content.dimensions(dim -> dim.width(Size.percentage(100)).height(Size.percentage(100)))
 						.color(Color.WHITE)
 				)
 				.border(border -> border.all(b -> b.size(Size.pixel(1)).color(Color.BLACK)))

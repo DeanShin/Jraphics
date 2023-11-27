@@ -3,6 +3,9 @@ package org.deanshin.jraphics.datamodel;
 import java.util.List;
 import java.util.function.Function;
 
+/**
+ * Represents the border of a box.
+ */
 public class Border {
 	private final BorderSide left;
 	private final BorderSide top;
@@ -16,6 +19,11 @@ public class Border {
 		this.bottom = bottom;
 	}
 
+	/**
+	 * Create a new Border using the Builder design pattern.
+	 *
+	 * @return The builder for the Border.
+	 */
 	public static Builder builder() {
 		return new Builder();
 	}
@@ -51,36 +59,69 @@ public class Border {
 			this.all = List.of(this.left, this.top, this.right, this.bottom);
 		}
 
+		/**
+		 * Specify all the sides of the border at the same time.
+		 *
+		 * @return the builder
+		 */
 		public Builder all(Function<BorderSide.Builder, BorderSide.Builder> buildOperation) {
 			this.all.forEach(buildOperation::apply);
 			return this;
 		}
 
+		/**
+		 * Specify the left side of the border.
+		 *
+		 * @return the builder
+		 */
 		public Builder left(Function<BorderSide.Builder, BorderSide.Builder> buildOperation) {
 			this.left = buildOperation.apply(this.left);
 			return this;
 		}
 
+		/**
+		 * Specify the top side of the border.
+		 *
+		 * @return the builder
+		 */
 		public Builder top(Function<BorderSide.Builder, BorderSide.Builder> buildOperation) {
 			this.top = buildOperation.apply(this.top);
 			return this;
 		}
 
+		/**
+		 * Specify the right side of the border.
+		 *
+		 * @return the builder
+		 */
 		public Builder right(Function<BorderSide.Builder, BorderSide.Builder> buildOperation) {
 			this.right = buildOperation.apply(this.right);
 			return this;
 		}
 
+		/**
+		 * Specify the bottom side of the border.
+		 *
+		 * @return the builder
+		 */
 		public Builder bottom(Function<BorderSide.Builder, BorderSide.Builder> buildOperation) {
 			this.bottom = buildOperation.apply(this.bottom);
 			return this;
 		}
 
+		/**
+		 * End construction of the Border.
+		 *
+		 * @return the border
+		 */
 		public Border build() {
 			return new Border(left.build(), top.build(), right.build(), bottom.build());
 		}
 	}
 
+	/**
+	 * Represents a single side of the border box.
+	 */
 	public static class BorderSide {
 		private final Size size;
 		private final Color color;
@@ -90,6 +131,11 @@ public class Border {
 			this.color = color;
 		}
 
+		/**
+		 * Create a new BorderSide using the Builder design pattern.
+		 *
+		 * @return The builder for the BorderSide.
+		 */
 		public static Builder builder() {
 			return new BorderSide.Builder();
 		}
@@ -111,16 +157,31 @@ public class Border {
 				this.color = Color.CLEAR;
 			}
 
+			/**
+			 * Specify the width of the border side
+			 *
+			 * @return the builder
+			 */
 			public Builder size(Size size) {
 				this.size = size;
 				return this;
 			}
 
+			/**
+			 * Specify the color of the border side
+			 *
+			 * @return the builder
+			 */
 			public Builder color(Color color) {
 				this.color = color;
 				return this;
 			}
 
+			/**
+			 * Finalize construction of the BorderSide
+			 *
+			 * @return the BorderSide
+			 */
 			public BorderSide build() {
 				return new BorderSide(this.size, this.color);
 			}
