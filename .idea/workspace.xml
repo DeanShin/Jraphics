@@ -8,9 +8,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="570ff112-6e44-4de5-8fdb-ca139643f457" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/lib/src/main/java/org/deanshin/jraphics/example/AbsoluteBoxDemoScreen.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/src/main/java/org/deanshin/jraphics/example/RelativeBoxDemoScreen.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/main/java/org/deanshin/jraphics/datamodel/Content.java" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/main/java/org/deanshin/jraphics/datamodel/Content.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/src/main/java/org/deanshin/jraphics/example/MainScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/main/java/org/deanshin/jraphics/example/MainScreen.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/src/main/java/org/deanshin/jraphics/example/ScreenManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/main/java/org/deanshin/jraphics/example/ScreenManager.java" afterDir="false" />
     </list>
@@ -179,7 +178,7 @@
       <workItem from="1700524884615" duration="7058000" />
       <workItem from="1701070254179" duration="11963000" />
       <workItem from="1701137364726" duration="1368000" />
-      <workItem from="1701467006230" duration="886000" />
+      <workItem from="1701467006230" duration="2849000" />
     </task>
     <servers />
   </component>

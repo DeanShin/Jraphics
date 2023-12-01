@@ -25,6 +25,7 @@ public class ScreenManager extends Component<ScreenManager.Properties, ScreenMan
 				new NextScreen.Properties(() -> updateState(new State(Screen.MAIN)))
 			));
 			case ABSOLUTE_BOX_DEMO -> List.of(new AbsoluteBoxDemoScreen());
+			case RELATIVE_BOX_DEMO -> List.of(new RelativeBoxDemoScreen());
 		};
 	}
 
@@ -32,6 +33,7 @@ public class ScreenManager extends Component<ScreenManager.Properties, ScreenMan
 		MAIN,
 		NEXT,
 		ABSOLUTE_BOX_DEMO,
+		RELATIVE_BOX_DEMO
 	}
 
 	public record State(Screen screen) {

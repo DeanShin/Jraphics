@@ -35,7 +35,7 @@ public class MainScreen extends Component<MainScreen.Properties, MainScreen.Stat
 					RelativeBox.builder()
 						.content(box -> box.color(Color.WHITE)
 							.height(Size.percentage(100))
-							.width(Size.percentage(50))
+							.width(Size.percentage(33))
 						)
 						.children(new ButtonComponent(new ButtonComponent.Properties(
 							"Next",
@@ -45,11 +45,21 @@ public class MainScreen extends Component<MainScreen.Properties, MainScreen.Stat
 					RelativeBox.builder()
 						.content(box -> box.color(Color.WHITE)
 							.height(Size.percentage(100))
-							.width(Size.percentage(50))
+							.width(Size.percentage(33))
 						)
 						.children(new ButtonComponent(new ButtonComponent.Properties(
 							"Absolute",
 							(ignored) -> properties.onScreenChangeRequested.accept(ScreenManager.Screen.ABSOLUTE_BOX_DEMO)
+						)))
+						.build(),
+					RelativeBox.builder()
+						.content(box -> box.color(Color.WHITE)
+							.height(Size.percentage(100))
+							.width(Size.percentage(33))
+						)
+						.children(new ButtonComponent(new ButtonComponent.Properties(
+							"Relative",
+							(ignored) -> properties.onScreenChangeRequested.accept(ScreenManager.Screen.RELATIVE_BOX_DEMO)
 						)))
 						.build()
 				)
