@@ -45,6 +45,16 @@ public class Content {
 			return this;
 		}
 
+		public Builder width(Size width) {
+			dimensions.width(width);
+			return this;
+		}
+
+		public Builder height(Size height) {
+			dimensions.height(height);
+			return this;
+		}
+
 		public Builder color(Color color) {
 			this.color = color;
 			return this;

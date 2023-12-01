@@ -17,22 +17,21 @@ public class ScreenManager extends Component<ScreenManager.Properties, ScreenMan
 
 	@Override
 	public List<Element> getChildren() {
-		if (getState().screen == Screen.MAIN) {
-			return List.of(new MainScreen(
-				new MainScreen.Properties(() -> updateState(new State(Screen.NEXT)))
+		return switch (getState().screen) {
+			case MAIN -> List.of(new MainScreen(
+				new MainScreen.Properties((screen) -> updateState(new State(screen)))
 			));
-		} else if (getState().screen == Screen.NEXT) {
-			return List.of(new NextScreen(
+			case NEXT -> List.of(new NextScreen(
 				new NextScreen.Properties(() -> updateState(new State(Screen.MAIN)))
 			));
-		} else {
-			throw new IllegalArgumentException();
-		}
+			case ABSOLUTE_BOX_DEMO -> List.of(new AbsoluteBoxDemoScreen());
+		};
 	}
 
-	private enum Screen {
+	public enum Screen {
 		MAIN,
-		NEXT
+		NEXT,
+		ABSOLUTE_BOX_DEMO,
 	}
 
 	public record State(Screen screen) {

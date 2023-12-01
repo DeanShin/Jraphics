@@ -3,6 +3,7 @@ package org.deanshin.jraphics.example;
 import org.deanshin.jraphics.datamodel.*;
 
 import java.util.List;
+import java.util.function.Consumer;
 
 import static org.deanshin.jraphics.datamodel.Size.pixel;
 
@@ -27,17 +28,36 @@ public class MainScreen extends Component<MainScreen.Properties, MainScreen.Stat
 				.build(),
 			RelativeBox.builder()
 				.content(box -> box.color(Color.WHITE)
-					.dimensions(dim -> dim.width(Size.percentage(50)).height(Size.pixel(50))))
+					.dimensions(dim -> dim.width(Size.percentage(100)).height(Size.pixel(50))))
 				.margin(margin -> margin.top(pixel(200)))
-				.children(new ButtonComponent(new ButtonComponent.Properties(
-					"Next",
-					(ignored) -> properties.onNextButtonClicked.run()
-				)))
+				.flow(ElementFlow.HORIZONTAL)
+				.children(
+					RelativeBox.builder()
+						.content(box -> box.color(Color.WHITE)
+							.height(Size.percentage(100))
+							.width(Size.percentage(50))
+						)
+						.children(new ButtonComponent(new ButtonComponent.Properties(
+							"Next",
+							(ignored) -> properties.onScreenChangeRequested.accept(ScreenManager.Screen.NEXT)
+						)))
+						.build(),
+					RelativeBox.builder()
+						.content(box -> box.color(Color.WHITE)
+							.height(Size.percentage(100))
+							.width(Size.percentage(50))
+						)
+						.children(new ButtonComponent(new ButtonComponent.Properties(
+							"Absolute",
+							(ignored) -> properties.onScreenChangeRequested.accept(ScreenManager.Screen.ABSOLUTE_BOX_DEMO)
+						)))
+						.build()
+				)
 				.build()
 		);
 	}
 
-	public record Properties(Runnable onNextButtonClicked) {
+	public record Properties(Consumer<ScreenManager.Screen> onScreenChangeRequested) {
 
 	}
 
