@@ -31,6 +31,7 @@ public class NextScreen extends Component<NextScreen.Properties, NextScreen.Stat
 				.margin(margin -> margin.top(pixel(100)))
 				.flow(ElementFlow.HORIZONTAL)
 				.children(
+					// Register two ClickCounterComponents with different state keys, so they have different states.
 					new ClickCounterComponent("click_counter_1"),
 					new ClickCounterComponent("click_counter_2")
 				)

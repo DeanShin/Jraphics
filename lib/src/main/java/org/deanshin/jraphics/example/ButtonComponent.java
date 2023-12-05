@@ -6,6 +6,10 @@ import java.awt.event.MouseEvent;
 import java.util.List;
 import java.util.function.Consumer;
 
+/**
+ * The ButtonComponent takes in a string 'text' in its properties, which is the text rendered on the button.
+ * Additionally, it takes in an onClick callback, which is called when the button is clicked.
+ */
 public class ButtonComponent extends Component<ButtonComponent.Properties, ButtonComponent.State> {
 
 	protected ButtonComponent(Properties properties) {

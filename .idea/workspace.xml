@@ -8,9 +8,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="570ff112-6e44-4de5-8fdb-ca139643f457" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/lib/src/main/java/org/deanshin/jraphics/example/RelativeBoxDemoScreen.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/main/java/org/deanshin/jraphics/datamodel/Component.java" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/main/java/org/deanshin/jraphics/datamodel/Component.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/main/java/org/deanshin/jraphics/example/AbsoluteBoxDemoScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/main/java/org/deanshin/jraphics/example/AbsoluteBoxDemoScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/main/java/org/deanshin/jraphics/example/ButtonComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/main/java/org/deanshin/jraphics/example/ButtonComponent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/main/java/org/deanshin/jraphics/example/ClickCounterComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/main/java/org/deanshin/jraphics/example/ClickCounterComponent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/main/java/org/deanshin/jraphics/example/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/main/java/org/deanshin/jraphics/example/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/src/main/java/org/deanshin/jraphics/example/MainScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/main/java/org/deanshin/jraphics/example/MainScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/main/java/org/deanshin/jraphics/example/NextScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/main/java/org/deanshin/jraphics/example/NextScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/main/java/org/deanshin/jraphics/example/RelativeBoxDemoScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/main/java/org/deanshin/jraphics/example/RelativeBoxDemoScreen.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/src/main/java/org/deanshin/jraphics/example/ScreenManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/main/java/org/deanshin/jraphics/example/ScreenManager.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -140,10 +147,33 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="Jraphics [dependencies]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="dependencies" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>false</RunAsTest>
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.org.deanshin.jraphics.example.Main" />
         <item itemvalue="Application.Main" />
+        <item itemvalue="Gradle.Jraphics [dependencies]" />
+        <item itemvalue="Application.org.deanshin.jraphics.example.Main" />
       </list>
     </recent_temporary>
   </component>
@@ -178,7 +208,8 @@
       <workItem from="1700524884615" duration="7058000" />
       <workItem from="1701070254179" duration="11963000" />
       <workItem from="1701137364726" duration="1368000" />
-      <workItem from="1701467006230" duration="2849000" />
+      <workItem from="1701467006230" duration="3839000" />
+      <workItem from="1701737309845" duration="4112000" />
     </task>
     <servers />
   </component>

@@ -7,6 +7,10 @@ import java.util.function.Consumer;
 
 import static org.deanshin.jraphics.datamodel.Size.pixel;
 
+/**
+ * The MainScreen renders a set of buttons, which on click call an onScreenChangeRequested callback with each button's
+ * corresponding screen as the parameter.
+ */
 public class MainScreen extends Component<MainScreen.Properties, MainScreen.State> {
 	protected MainScreen(Properties properties) {
 		super(properties, "");
@@ -39,6 +43,7 @@ public class MainScreen extends Component<MainScreen.Properties, MainScreen.Stat
 						)
 						.children(new ButtonComponent(new ButtonComponent.Properties(
 							"Next",
+							// When the next button is clicked, call the onScreenChangeRequested callback with the NEXT screen as a parameter
 							(ignored) -> properties.onScreenChangeRequested.accept(ScreenManager.Screen.NEXT)
 						)))
 						.build(),
@@ -49,6 +54,7 @@ public class MainScreen extends Component<MainScreen.Properties, MainScreen.Stat
 						)
 						.children(new ButtonComponent(new ButtonComponent.Properties(
 							"Absolute",
+							// When the absolute button is clicked, call the onScreenChangeRequested callback with the ABSOLUTE_BOX_DEMO screen as a parameter
 							(ignored) -> properties.onScreenChangeRequested.accept(ScreenManager.Screen.ABSOLUTE_BOX_DEMO)
 						)))
 						.build(),
@@ -59,6 +65,7 @@ public class MainScreen extends Component<MainScreen.Properties, MainScreen.Stat
 						)
 						.children(new ButtonComponent(new ButtonComponent.Properties(
 							"Relative",
+							// When the relative button is clicked, call the onScreenChangeRequested callback with the RELATIVE_BOX_DEMO screen as a parameter
 							(ignored) -> properties.onScreenChangeRequested.accept(ScreenManager.Screen.RELATIVE_BOX_DEMO)
 						)))
 						.build()

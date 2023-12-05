@@ -4,6 +4,9 @@ import org.deanshin.jraphics.datamodel.*;
 
 import java.util.List;
 
+/**
+ * A class showcasing how to use absolute boxes.
+ */
 public class RelativeBoxDemoScreen extends Component<RelativeBoxDemoScreen.Properties, RelativeBoxDemoScreen.State> {
 
 	public RelativeBoxDemoScreen() {
@@ -17,6 +20,8 @@ public class RelativeBoxDemoScreen extends Component<RelativeBoxDemoScreen.Prope
 
 	@Override
 	public List<Element> getChildren() {
+		// Absolute boxes use margin to determine how far away from the previous element / inner edge of the parent element
+		// the element should be drawn.
 		return List.of(
 			RelativeBox.builder()
 				.margin(m -> m.top(Size.pixel(100)).left(Size.pixel(100)))

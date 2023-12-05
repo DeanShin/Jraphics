@@ -4,6 +4,9 @@ import org.deanshin.jraphics.datamodel.*;
 
 import java.util.List;
 
+/**
+ * A class showcasing how to use absolute boxes.
+ */
 public class AbsoluteBoxDemoScreen extends Component<AbsoluteBoxDemoScreen.Properties, AbsoluteBoxDemoScreen.State> {
 
 	public AbsoluteBoxDemoScreen() {
@@ -17,6 +20,8 @@ public class AbsoluteBoxDemoScreen extends Component<AbsoluteBoxDemoScreen.Prope
 
 	@Override
 	public List<Element> getChildren() {
+		// Absolute boxes use an x and y coordinate that determine how far from the top left of the parent element
+		// the element should be drawn.
 		return List.of(
 			AbsoluteBox.builder()
 				.x(Size.pixel(100))

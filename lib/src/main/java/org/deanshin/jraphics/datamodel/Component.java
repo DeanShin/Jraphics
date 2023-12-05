@@ -31,6 +31,12 @@ public abstract class Component<PROPERTIES, STATE extends Record> implements Ele
 	private final String key;
 	protected PROPERTIES properties;
 
+	/**
+	 * The base constructor for the component.
+	 *
+	 * @param key The key used to store the state of the component. If two component share the same key,
+	 *            they will share the same state.
+	 */
 	protected Component(PROPERTIES properties, String key) {
 		this.properties = properties;
 		this.key = key;
@@ -39,14 +45,23 @@ public abstract class Component<PROPERTIES, STATE extends Record> implements Ele
 		}
 	}
 
+	/**
+	 * Function used to initialize the state of the component.
+	 */
 	protected abstract STATE initializeState();
 
+	/**
+	 * Update the state of the component. Calling this function will rerender the application.
+	 */
 	protected STATE updateState(STATE state) {
 		StateManager.getInstance().setValue(key, state);
 		StateManager.getInstance().rerender();
 		return state;
 	}
 
+	/**
+	 * Retrieve the state of the current component.
+	 */
 	protected STATE getState() {
 		return StateManager.getInstance().getValue(key);
 	}
